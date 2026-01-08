@@ -26,7 +26,7 @@
     <!-- ===== HEADER (your code) ===== -->
     <header class="bf-header">
       <div class="bf-header__inner container">
-        <a class="bf-brand" href="#">
+        <a class="bf-brand" href="home.html">
           <img
             class="bf-logo"
             src="images/NewLogo.png"
@@ -35,14 +35,15 @@
           />
         </a>
 
-        <nav aria-label="Primary">
-          <a href="home.html">Home</a>
-          <a href="catalog.html" aria-current="page">Browse</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact Us</a>
+        <nav aria-label="Primary" class="bf-nav">
+          <a class="bf-nav__link" href="home.html">Home</a>
+          <a class="bf-nav__link active" href="catalog.html" aria-current="page">Browse</a>
+          <a class="bf-nav__link" href="about.html">About</a>
+          <a class="bf-nav__link" href="contact.html">Contact Us</a>
         </nav>
 
         <div class="bf-auth">
+          <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
           <button class="bf-btn bf-btn--ghost" type="button">Login</button>
           <button class="bf-btn bf-btn--primary" type="button">Sign up</button>
         </div>
@@ -138,5 +139,6 @@
         </div>
       </div>
     </footer>
+    <script src="darkmode.js"></script>
   </body>
 </html>

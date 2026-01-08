@@ -11,24 +11,24 @@
 <body>
 
   <header class="bf-header">
-    <div class="bf-header__inner container">
-        <a class="bf-brand" href="#">
-            <img class="bf-logo" src="images/NewLogo.png" alt="Bookify logo" onerror="this.style.display='none'">
+  <div class="bf-header__inner container">
+    <a class="bf-brand" href="home.html">
+      <img class="bf-logo" src="images/NewLogo.png" alt="Bookify logo" onerror="this.style.display='none'">
+    </a>
 
-        </a>
+    <nav aria-label="Primary" class="bf-nav">
+      <a class="bf-nav__link" href="home.html">Home</a>
+      <a class="bf-nav__link" href="catalog.html">Browse</a>
+      <a class="bf-nav__link" href="about.html">About</a>
+      <a class="bf-nav__link active" href="contact.html" aria-current="page">Contact Us</a>
+    </nav>
 
-        <nav aria-label="Primary">
-            <a href="home.html">Home</a>
-            <a href="#">Browse</a>
-            <a href="about.html">About</a>
-            <a href="contact.html" aria-current="page">Contact Us</a>
-          </nav>
-
-        <div class="bf-auth">
-            <button class="bf-btn bf-btn--ghost" type="button">Login</button>
-            <button class="bf-btn bf-btn--primary" type="button">Sign up</button>
-        </div>
+    <div class="bf-auth">
+      <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <button class="bf-btn bf-btn--ghost" type="button">Login</button>
+      <button class="bf-btn bf-btn--primary" type="button">Sign up</button>
     </div>
+  </div>
 </header>
 
   <section class="hero">
@@ -192,6 +192,6 @@
         </div>
       </footer>
   </main>
-
+<script src="darkmode.js"></script>
 </body>
 </html>
