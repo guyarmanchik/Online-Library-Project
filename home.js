@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   // ===== Category of the Week =====
   const categories = [
@@ -64,4 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== init =====
   renderCategory();
   renderHero();
+});
+
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    // change icon
+    themeToggle.textContent =
+        document.body.classList.contains("dark") ? "☀️" : "🌙";
 });

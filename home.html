@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +7,6 @@
     <title>Bookify</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="homeStyle.css" />
-    <link rel="stylesheet" href="aboutstyle.css">
-    <link rel="stylesheet" href="contact.css">
 </head>
 
 <body>
@@ -22,17 +19,21 @@
 
             </a>
 
-            <nav aria-label="Primary">
-                <a href="home.html" aria-current="page">Home</a>
-                <a href="#">Browse</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact Us</a>
-              </nav>
+            <nav class="bf-nav">
+                <a class="bf-nav__link active" href="#">Home</a>
+                <a class="bf-nav__link" href="#">About</a>
+                <a class="bf-nav__link" href="#">My Profile</a>
+            </nav>
 
             <div class="bf-auth">
-                <button class="bf-btn bf-btn--ghost" type="button">Login</button>
-                <button class="bf-btn bf-btn--primary" type="button">Sign up</button>
+                <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">
+                    🌙
+                </button>
+
+                <button class="bf-btn bf-btn--ghost">Login</button>
+                <button class="bf-btn bf-btn--primary">Sign up</button>
             </div>
+
         </div>
     </header>
 
@@ -115,7 +116,7 @@
                     </p>
                 </div>
                 <div class="bf-card__footer">
-                    <a class="bf-btn bf-btn--primary bf-btn--wide" href="borrow.html?id=1">Details</a>
+                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button">Details</button>
                     <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
                 </div>
             </article>
@@ -134,7 +135,7 @@
                     </p>
                 </div>
                 <div class="bf-card__footer">
-                    <a class="bf-btn bf-btn--primary bf-btn--wide" href="borrow.html?id=2" >Details</a>
+                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button">Details</button>
                     <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
                 </div>
             </article>
@@ -154,7 +155,7 @@
                     </p>
                 </div>
                 <div class="bf-card__footer">
-                    <a class="bf-btn bf-btn--primary bf-btn--wide" href="borrow.html?id=3">Details</a>
+                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button">Details</button>
                     <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
                 </div>
             </article>
@@ -179,7 +180,7 @@
                 </div>
 
                 <div class="bf-card__footer">
-                    <a class="bf-btn bf-btn--primary bf-btn--wide" href="borrow.html?id=4">Details</a>
+                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button">Details</button>
                     <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
                 </div>
             </article>
@@ -208,7 +209,8 @@
 
             <div class="site-footer__brand">
                 <div class="site-footer__logoRow">
-                    <img src="images/NewLogo.png" alt="Bookify" class="site-footer__logo" onerror="this.style.display='none'">
+                    <img src="images/NewLogo.png" alt="Bookify" class="site-footer__logo"
+                        onerror="this.style.display='none'">
                     <span class="site-footer__name">Bookify</span>
                 </div>
 
@@ -221,7 +223,7 @@
 
             <div class="site-footer__col">
                 <h4>EXPLORE</h4>
-                <a href="about.html">About Us</a>
+                <a href="#">About Us</a>
                 <a href="#">Browse Catalog</a>
                 <a href="#">Fiction</a>
                 <a href="#">Non-Fiction</a>
@@ -250,7 +252,7 @@
             <div class="site-footer__links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="#">Contact Us</a>
             </div>
         </div>
     </footer>
