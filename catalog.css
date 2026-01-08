@@ -88,7 +88,7 @@
   border-radius: 999px;
   border: 1px solid var(--border);
   background: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -168,11 +168,14 @@
   font-size: 15px;
   font-weight: 700;
   margin-top: 6px;
+  line-height: 1.3;
 }
 
 .book-author {
   font-size: 13px;
   color: var(--text-muted);
+  margin: 0;
+  line-height: 1.3;
 }
 
 /* Meta */
@@ -184,15 +187,17 @@
 }
 
 .book-rating {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .book-rating .star {
   color: var(--orange);
+  font-size: 18px;   /* שחק כאן: 18–22 נראה מצוין */
+  line-height: 1;
 }
 
 /* Badge */
