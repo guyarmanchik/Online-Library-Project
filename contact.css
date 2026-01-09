@@ -1,26 +1,6 @@
-:root{
-  --blue1:#8a3a16;
-  --blue2:#e46a10;
-
-  --bg:#f7efe9;
-  --text:#2b1409;
-  --muted:#7a4a32;
-
-  --border:rgba(43, 20, 9, 0.15);
-  --shadow:0 16px 40px rgba(0,0,0,.18);
-  --r:18px;
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:var(--text);
-  background:var(--bg);
-}
 h1,h2,h3{margin:0}
 p{margin:0}
+/* Contact page uses a slightly tighter container than the global one */
 .container{
   width:min(1120px, calc(100% - 48px));
   margin:0 auto;
@@ -154,9 +134,9 @@ input:focus, textarea:focus{
   color: var(--text);
 }
 .photo{
-  border-radius: var(--r);
+  border-radius: var(--radius);
   height:260px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 16px 40px rgba(0,0,0,.18);
   background:
     linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.18)),
     url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1400&q=70");
