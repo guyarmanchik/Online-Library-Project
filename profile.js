@@ -182,14 +182,3 @@ function handleReturn(bookId) {
 // ]))
 
 initProfile();
-
-const user = {
-  name: "Amit",
-  email: "amit55.galili@gmail.com",
-  joined: "December 2025"
-};
-
-document.getElementById("userName").textContent = user.name;
-document.getElementById("userEmail").textContent = user.email;
-document.getElementById("joinedDate").textContent = `Joined ${user.joined}`;
-document.getElementById("avatarLetter").textContent = user.name.charAt(0).toUpperCase();
