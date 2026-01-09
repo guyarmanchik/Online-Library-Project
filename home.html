@@ -7,6 +7,7 @@
     <title>Bookify</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="homeStyle.css" />
+    <link rel="stylesheet" href="aboutstyle.css">
 </head>
 
 <body>
@@ -15,12 +16,12 @@
     <header class="bf-header">
         <div class="bf-header__inner container">
             <a class="bf-brand" href="./home.html">
-                <img class="bf-logo" src="images/NewLogo.png" alt="Bookify logo" onerror="this.style.display='none'">
+                <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'">
 
             </a>
 
             <nav aria-label="Primary" class="bf-nav">
-                <a class="bf-nav__link active" href="home.html">Home</a>
+                <a class="bf-nav__link" href="home.html" aria-current="page">Home</a>
                 <a class="bf-nav__link" href="catalog.html">Browse</a>
                 <a class="bf-nav__link" href="about.html">About</a>
                 <a class="bf-nav__link" href="contact.html">Contact Us</a>
@@ -199,64 +200,56 @@
                 Join thousands of readers and unlock unlimited access to our entire collection
             </p>
 
-            <a class="cta-hero__btn" href="#get-started">Get Started Today</a>
+            <a class="cta-hero__btn" href="home.html">Get Started Today</a>
         </div>
     </section>
 
     <!-- ===== FOOTER (NEW) ===== -->
-    <footer class="site-footer">
-        <div class="container site-footer__top">
-
-            <div class="site-footer__brand">
-                <div class="site-footer__logoRow">
-                    <img src="images/NewLogo.png" alt="Bookify" class="site-footer__logo"
-                        onerror="this.style.display='none'">
-                    <span class="site-footer__name">Bookify</span>
-                </div>
-
-                <p class="site-footer__desc">
-                    Your gateway to endless knowledge.<br>
-                    Discover, borrow, and explore our curated<br>
-                    collection of literary treasures.
-                </p>
+    <footer>
+        <div class="wrap" id="foot-grid">
+          <div>
+            <div id="foot-brand">
+              <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
+              <span id="foot-name">Bookify</span>
             </div>
-
-            <div class="site-footer__col">
-                <h4>EXPLORE</h4>
-                <a href="#">About Us</a>
-                <a href="#">Browse Catalog</a>
-                <a href="#">Fiction</a>
-                <a href="#">Non-Fiction</a>
-            </div>
-
-            <div class="site-footer__col">
-                <h4>ACCOUNT</h4>
-                <a href="#">My Profile</a>
-                <a href="#">Borrowed Books</a>
-                <a href="#">Reading History</a>
-            </div>
-
-            <div class="site-footer__col">
-                <h4>LIBRARY HOURS</h4>
-                <div class="hours">
-                    <div><span>Monday - Friday</span><span>9AM - 9PM</span></div>
-                    <div><span>Saturday</span><span>10AM - 6PM</span></div>
-                    <div><span>Sunday</span><span>12PM - 5PM</span></div>
-                </div>
-            </div>
-
+            <p id="tag">
+              Your gateway to endless knowledge.<br />
+              Discover, borrow, and explore our curated collection of literary treasures.
+            </p>
+          </div>
+  
+          <div>
+            <h4>EXPLORE</h4>
+            <a href="about.html">About Us</a>
+            <a href="catalog.html">Browse Catalog</a>
+            <a href="catalog.html">Fiction</a>
+            <a href="catalog.html">Non-Fiction</a>
+          </div>
+  
+          <div>
+            <h4>ACCOUNT</h4>
+            <a href="profile.html">My Profile</a>
+            <a href="profile.html">Borrowed Books</a>
+            <a href="profile.html">Reading History</a>
+          </div>
+  
+          <div>
+            <h4>LIBRARY HOURS</h4>
+            <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
+            <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
+            <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
+          </div>
         </div>
-
-        <div class="container site-footer__bottom">
-            <span>© 2025 Bookify Library. All rights reserved.</span>
-            <div class="site-footer__links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact Us</a>
-            </div>
+  
+        <div class="wrap" id="bottom">
+          <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
+          <div id="links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
         </div>
-    </footer>
-
+      </footer>
     <script src="Home.js" defer></script>
 </body>
 
