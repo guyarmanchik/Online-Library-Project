@@ -260,6 +260,7 @@
 }
 
 /* Badges */
+/* ===== Badges (uniform + same-color text) ===== */
 .bf-badge {
   display: inline-block;
   width: fit-content;
@@ -267,27 +268,42 @@
   border-radius: 999px;
   font-weight: 900;
   font-size: 12px;
-  color: #fff;
+  letter-spacing: .2px;
+
+  /* fallback */
+  background: rgba(0,0,0,.06);
+  color: rgba(0,0,0,.75);
+  border: 1px solid rgba(0,0,0,.12);
 }
 
+/* Green */
 .bf-badge--green {
-  background: #198754;
+  background: rgba(25, 135, 84, 0.16);
+  color: rgba(20, 100, 60, 0.95);
+  border: 1px solid rgba(25, 135, 84, 0.28);
 }
 
+/* Orange */
 .bf-badge--orange {
-  background: #f59f00;
-  color: #1b1b1b;
+  background: rgba(245, 159, 0, 0.18);
+  color: rgba(180, 83, 9, 0.95);
+  border: 1px solid rgba(245, 159, 0, 0.30);
 }
 
+/* Blue (Self-Improvement) */
 .bf-badge--blue {
-  background: #0dcaf0;
-  color: #033a44;
+  background: rgba(13, 202, 240, 0.18);
+  color: rgba(3, 96, 120, 0.95);
+  border: 1px solid rgba(13, 202, 240, 0.30);
 }
 
+/* Purple */
 .bf-badge--purple {
-  background: rebeccapurple;
-  color: plum;
+  background: rgba(102, 51, 153, 0.16);
+  color: rgba(74, 35, 115, 0.95);
+  border: 1px solid rgba(102, 51, 153, 0.28);
 }
+
 
 /* ===== CTA HERO ===== */
 .cta-hero {
