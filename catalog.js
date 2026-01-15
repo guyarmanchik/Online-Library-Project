@@ -46,24 +46,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const rating = pseudoRating(book);
 
     return `
-      <article class="book-card"
-        data-title="${escapeHtml(title)}"
-        data-author="${escapeHtml(author)}"
-        data-genre="${escapeHtml(genre)}">
-        <div class="book-cover">
-          <img src="${cover}" alt="${escapeHtml(title)} cover"
-               onerror="this.src='images/placeholder-cover.png'">
+    <a class="book-link" href="borrow.html?id=${book.id}">
+     <article class="book-card"
+      data-title="${escapeHtml(title)}"
+      data-author="${escapeHtml(author)}"
+      data-genre="${escapeHtml(genre)}">
+
+      <div class="book-cover">
+        <img src="${cover}" alt="${escapeHtml(title)} cover"
+             onerror="this.src='images/placeholder-cover.png'">
+      </div>
+
+      <h3 class="book-title">${escapeHtml(title)}</h3>
+      <p class="book-author">${escapeHtml(author)}</p>
+
+      <div class="book-meta">
+        <div class="book-rating">
+          <span class="star">★</span><span>${rating}</span>
         </div>
-        <h3 class="book-title">${escapeHtml(title)}</h3>
-        <p class="book-author">${escapeHtml(author)}</p>
-        <div class="book-meta">
-          <div class="book-rating"><span class="star">★</span><span>${rating}</span></div>
-          <span class="book-badge ${available ? "" : "book-badge--off"}">
-            ${available ? "Available" : "Unavailable"}
-          </span>
-        </div>
-      </article>
-    `;
+
+        <span class="book-badge ${available ? "" : "book-badge--off"}">
+          ${available ? "Available" : "Unavailable"}
+        </span>
+      </div>
+
+    </article>
+    </a>
+`;
+
   }
 
   function applyFilters() {
