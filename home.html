@@ -69,16 +69,16 @@
         </div>
 
         <div class="bf-feature">
-            <button class="bf-arrow" id="catPrev" aria-label="Previous category">‹</button>
+            <button class="bf-arrow bf-catArrow" id="catPrev" aria-label="Previous category">‹</button>
 
             <div class="bf-feature__card">
                 <h3 id="categoryTitle" class="bf-feature__title">Fantasy</h3>
-                <p id="categoryDesc" class="bf-feature__desc">
+                <p id="categoryDesc" class="bf-feature__desc bf-catDesc">
                     Magic, adventures, and unforgettable worlds.
                 </p>
             </div>
 
-            <button class="bf-arrow" id="catNext" aria-label="Next category">›</button>
+            <button class="bf-arrow bf-catArrow" id="catNext" aria-label="Next category">›</button>
         </div>
 
         <!-- Image carousel -->
@@ -118,7 +118,7 @@
                 <div class="bf-card__footer">
                     <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
                         onclick="location.href='borrow.html?id=1'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
                 </div>
             </article>
 
@@ -137,7 +137,7 @@
                 </div>
                 <div class="bf-card__footer">
                     <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=2'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
                 </div>
             </article>
 
@@ -157,7 +157,7 @@
                 </div>
                 <div class="bf-card__footer">
                     <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=3'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
                 </div>
             </article>
 
@@ -182,7 +182,7 @@
 
                 <div class="bf-card__footer">
                     <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=4'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
                 </div>
             </article>
 
@@ -250,6 +250,7 @@
             </div>
         </div>
     </footer>
+    <script src="darkmode.js"></script>
     <script src="Home.js" defer></script>
 </body>
 

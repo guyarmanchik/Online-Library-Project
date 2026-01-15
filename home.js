@@ -66,13 +66,3 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategory();
   renderHero();
 });
-
-const themeToggle = document.getElementById("themeToggle");
-
-themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-
-    // change icon
-    themeToggle.textContent =
-        document.body.classList.contains("dark") ? "☀️" : "🌙";
-});
