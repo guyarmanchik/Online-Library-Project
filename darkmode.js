@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("themeToggle");
 
   // If a page doesn't have the toggle, just do nothing (no errors).
+  // (This page DOES have the toggle, so your current flow is fine.)
   if (!btn) return;
 
   const prefersDark =
@@ -18,7 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyTheme(theme) {
+    // Toggle class (what you already use)
     document.body.classList.toggle("dark", theme === "dark");
+
+    // ALSO set a data attribute on <html> so CSS can target it
+    document.documentElement.dataset.theme = theme;
+
     setIcon();
   }
 
