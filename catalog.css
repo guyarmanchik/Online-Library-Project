@@ -196,7 +196,8 @@
 
 .book-rating .star {
   color: var(--orange);
-  font-size: 18px;   /* שחק כאן: 18–22 נראה מצוין */
+  font-size: 18px;
+  /* שחק כאן: 18–22 נראה מצוין */
   line-height: 1;
 }
 
@@ -255,6 +256,11 @@
   }
 }
 
+.book-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
 /* ===== DARK MODE (Catalog page) ===== */
 html[data-theme="dark"] .catalog-input,
 body.dark .catalog-input {
