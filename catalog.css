@@ -189,7 +189,8 @@
 
 .book-rating .star {
   color: var(--orange);
-  font-size: 18px;   /* שחק כאן: 18–22 נראה מצוין */
+  font-size: 18px;
+  /* שחק כאן: 18–22 נראה מצוין */
   line-height: 1;
 }
 
@@ -246,4 +247,10 @@
   .books-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.book-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
