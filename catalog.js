@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return `
       <article class="book-card"
+        data-id="${book.id}"
         data-title="${escapeHtml(title)}"
         data-author="${escapeHtml(author)}"
         data-genre="${escapeHtml(genre)}">
@@ -90,8 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderBooks(list) {
     if (!grid) return;
     grid.innerHTML = list.map(createCard).join("");
+
+    // ✅ CLICK ON CARD -> go to book page by id
+    grid.querySelectorAll(".book-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const id = card.dataset.id;
+        window.location.href = `borrow.html?id=${id}`;
+      });
+    });
+
     applyFilters();
   }
+
 
   // Chips click (event delegation)
   if (chipsWrap) {
