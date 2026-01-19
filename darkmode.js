@@ -1,31 +1,31 @@
 // darkmode.js
 // Shared dark mode toggle for all pages.
-// Requires a button with id="themeToggle" somewhere in the DOM.
+// Works with buttons: #themeToggle (desktop) and #themeToggleMobile (inside hamburger).
 
 document.addEventListener("DOMContentLoaded", () => {
   const STORAGE_KEY = "bookify-theme";
-  const btn = document.getElementById("themeToggle");
+  const buttons = Array.from(
+    document.querySelectorAll("#themeToggle, #themeToggleMobile")
+  );
 
-  // If a page doesn't have the toggle, just do nothing (no errors).
-  // (This page DOES have the toggle, so your current flow is fine.)
-  if (!btn) return;
+  // If a page doesn't have toggles, do nothing
+  if (buttons.length === 0) return;
 
   const prefersDark =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  function setIcon() {
-    btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  function setIcons() {
+    const isDark = document.body.classList.contains("dark");
+    buttons.forEach((btn) => {
+      btn.textContent = isDark ? "☀️" : "🌙";
+    });
   }
 
   function applyTheme(theme) {
-    // Toggle class (what you already use)
     document.body.classList.toggle("dark", theme === "dark");
-
-    // ALSO set a data attribute on <html> so CSS can target it
     document.documentElement.dataset.theme = theme;
-
-    setIcon();
+    setIcons();
   }
 
   // Init theme from storage (fallback to OS preference)
@@ -34,9 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
   applyTheme(initial);
 
   // Toggle on click + persist
-  btn.addEventListener("click", () => {
-    const next = document.body.classList.contains("dark") ? "light" : "dark";
-    localStorage.setItem(STORAGE_KEY, next);
-    applyTheme(next);
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const next = document.body.classList.contains("dark") ? "light" : "dark";
+      localStorage.setItem(STORAGE_KEY, next);
+      applyTheme(next);
+    });
   });
 });

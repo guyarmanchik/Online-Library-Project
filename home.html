@@ -14,28 +14,40 @@
     <!-- ===== HEADER ===== -->
     <header class="bf-header">
         <div class="bf-header__inner container">
+
             <a class="bf-brand" href="./home.html">
                 <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'">
-
             </a>
 
+            <!-- ☰ hamburger (phone only) -->
+            <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
+
+            <!-- NAV (opens inside hamburger on phone) -->
             <nav aria-label="Primary" class="bf-nav">
                 <a class="bf-nav__link" href="home.html" aria-current="page">Home</a>
                 <a class="bf-nav__link" href="catalog.html">Browse</a>
                 <a class="bf-nav__link" href="about.html">About</a>
                 <a class="bf-nav__link" href="contact.html">Contact Us</a>
-            </nav>
 
-            <div class="bf-auth">
-                <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">
+                <!-- 🌙 dark mode inside the hamburger (phone only) -->
+                <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile"
+                    aria-label="Toggle dark mode">
                     🌙
                 </button>
+            </nav>
+
+            <!-- 오른 outside actions -->
+            <div class="bf-auth">
+                <!-- 🌙 this one will be hidden on phone -->
+                <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
+
                 <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
                 <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
             </div>
 
         </div>
     </header>
+
 
     <!-- ===== HERO (TEXT + SEARCH CENTERED) ===== -->
     <section class="bf-heroWrap">
@@ -118,7 +130,8 @@
                 <div class="bf-card__footer">
                     <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
                         onclick="location.href='borrow.html?id=1'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
+                        List</button>
                 </div>
             </article>
 
@@ -136,8 +149,10 @@
                     </p>
                 </div>
                 <div class="bf-card__footer">
-                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=2'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
+                        onclick="location.href='borrow.html?id=2'">Details</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
+                        List</button>
                 </div>
             </article>
 
@@ -156,8 +171,10 @@
                     </p>
                 </div>
                 <div class="bf-card__footer">
-                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=3'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
+                        onclick="location.href='borrow.html?id=3'">Details</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
+                        List</button>
                 </div>
             </article>
 
@@ -181,8 +198,10 @@
                 </div>
 
                 <div class="bf-card__footer">
-                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=4'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
+                        onclick="location.href='borrow.html?id=4'">Details</button>
+                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
+                        List</button>
                 </div>
             </article>
 

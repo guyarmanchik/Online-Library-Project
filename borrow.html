@@ -1,529 +1,362 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Borrow | Bookify</title>
 
-    <link rel="stylesheet" href="headerfooter.css">
-    <link rel="stylesheet" href="borrowstyle.css"/>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Borrow | Bookify</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+  <link rel="stylesheet" href="headerfooter.css">
+  <link rel="stylesheet" href="borrowstyle.css" />
 
-  <body>
-    <!-- Top Nav -->
-   <header class="bf-header">
-        <div class="bf-header__inner container">
-            <a class="bf-brand" href="./home.html">
-                <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
 
-            </a>
+<body>
+  <!-- Top Nav -->
+  <header class="bf-header">
+    <div class="bf-header__inner container">
+      <a class="bf-brand" href="./home.html">
+        <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'">
+      </a>
 
-            <nav aria-label="Primary" class="bf-nav">
-                <a class="bf-nav__link" href="home.html">Home</a>
-                <a class="bf-nav__link" href="catalog.html">Browse</a>
-                <a class="bf-nav__link" href="about.html">About</a>
-                <a class="bf-nav__link" href="contact.html">Contact Us</a>
-            </nav>
+      <!-- ☰ Hamburger (phone only) -->
+      <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
 
-            <div class="bf-auth">
-                <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">
-                    🌙
-                </button>
-                <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
-                <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
-            </div>
+      <nav aria-label="Primary" class="bf-nav">
+        <a class="bf-nav__link" href="home.html">Home</a>
+        <a class="bf-nav__link" href="catalog.html">Browse</a>
+        <a class="bf-nav__link" href="about.html">About</a>
+        <a class="bf-nav__link" href="contact.html">Contact Us</a>
 
-        </div>
-    </header>
+        <!-- 🌙 Dark mode inside hamburger (mobile only) -->
+        <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" aria-label="Toggle dark mode">
+          🌙
+        </button>
+      </nav>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero hero--mini">
-        <div class="container hero__inner">
-          <div class="hero__content">
-            <span class="pill">
-              <!-- book icon -->
+      <div class="bf-auth">
+        <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
+        <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+    <!-- Hero -->
+    <section class="hero hero--mini">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <span class="pill">
+            <!-- book icon -->
+            <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 4h10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Z" stroke="currentColor"
+                stroke-width="2" stroke-linejoin="round" />
+              <path d="M8 7h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            Book Details
+          </span>
+
+          <h1 id="bookTitle"></h1>
+
+          <p class="hero__subtitle">
+            <span class="inline">
+              <!-- user icon -->
               <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M6 4h10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Z"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 7h8"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
+                <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="" stroke-linecap="round" />
+                <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2" />
               </svg>
-              Book Details
+              By <strong id="bookAuthor"></strong>
             </span>
 
-            <h1 id="bookTitle"></h1>
+            <span class="dot">•</span>
 
-            <p class="hero__subtitle">
-              <span class="inline">
-                <!-- user icon -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M20 21a8 8 0 1 0-16 0"
-                    stroke="currentColor"
-                    stroke-width=""
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  />
-                </svg>
-                By <strong id="bookAuthor"></strong>
-              </span>
-
-              <span class="dot">•</span>
-
-              <span class="inline">
-                <!-- tag icon -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M20 13l-7 7-11-11V2h7l11 11Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M7.5 7.5h.01"
-                    stroke="currentColor"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                <span id="bookCategory"></span>
-              </span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Details -->
-      <section class="details">
-        <div class="container details__grid">
-          <!-- Right / Cover card -->
-          <aside class="card cover-card">
-            <div class="cover" id="coverWrap">
-              <img
-                id="bookCover"
-                src="images/placeholder-cover.png"
-                alt="Book cover"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="cover-meta">
-              <div class="cover-meta__row">
-                <span class="meta-left">
-                  <!-- barcode icon -->
-                  <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M10 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M14 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M20 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                  <span class="muted">ISBN</span>
-                </span>
-                <strong id="bookIsbn"></strong>
-              </div>
-
-              <div class="cover-meta__row">
-                <span class="meta-left">
-                  <!-- calendar icon -->
-                  <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M7 3v2M17 3v2"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M4 7h16"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M6 5h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                  <span class="muted">Year</span>
-                </span>
-                <strong id="bookYear"></strong>
-              </div>
-
-              <div class="cover-meta__row">
-                <span class="meta-left">
-                  <!-- globe icon -->
-                  <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    />
-                    <path
-                      d="M2 12h20"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M12 2c3 3 3 17 0 20"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M12 2c-3 3-3 17 0 20"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                  <span class="muted">Language</span>
-                </span>
-                <strong id="bookLanguage"></strong>
-              </div>
-            </div>
-
-            <div class="availability">
-              <div class="availability__left">
-                <div class="availability__label">
-                  <!-- info icon -->
-                  <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    />
-                    <path
-                      d="M12 10v6"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    />
-                    <path
-                      d="M12 7h.01"
-                      stroke="currentColor"
-                      stroke-width="4"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                  Status
-                </div>
-
-                <div id="bookStatus" class="badge badge--available">Available</div>
-              </div>
-
-              <div class="availability__right">
-                <div class="availability__hint" id="bookAvailabilityText"></div>
-              </div>
-            </div>
-          </aside>
-
-          <!-- Left / Info card -->
-          <article class="card info-card">
-            <div class="info-head">
-              <h2 class="section-title">
-                <!-- swap icon -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M7 7h13l-3-3"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M17 17H4l3 3"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Borrow / Return
-              </h2>
-              <span class="muted">Quick actions & details</span>
-            </div>
-
-            <div class="info-grid">
-              <div class="info-item">
-                <div class="info-item__label">
-                  <!-- tag icon -->
-                  <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M20 13l-7 7-11-11V2h7l11 11Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M7.5 7.5h.01"
-                      stroke="currentColor"
-                      stroke-width="4"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                  Category
-                </div>
-                <div class="info-item__value" id="bookCategory2"></div>
-              </div>
-
-              <div class="info-item">
-                <div class="info-item__label">
-                  <!-- hash icon -->
-                  <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M9 3 7 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M17 3 15 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M4 8h17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M3 16h17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                  ID
-                </div>
-                <div class="info-item__value" id="bookId"></div>
-              </div>
-
-              <div class="info-item">
-                <div class="info-item__label">
-                  <!-- layers icon -->
-                  <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M12 3 3 8l9 5 9-5-9-5Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M3 12l9 5 9-5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M3 16l9 5 9-5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                  Copies
-                </div>
-                <div class="info-item__value" id="bookCopies">1</div>
-              </div>
-            </div>
-
-            <div class="desc-block">
-              <h3 class="desc-title">
-                <!-- file-text icon -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linejoin="round"
-                  />
-                  <path d="M14 2v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                  <path d="M8 13h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M8 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                Description
-              </h3>
-
-              <p id="bookDescription" class="desc-text desc-text--clamp"></p>
-
-              <button id="toggleDescBtn" class="read-more-btn" type="button">
-                <span>Read more</span>
-                <!-- chevron down -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="m6 9 6 6 6-6"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <div class="actions">
-              <button id="borrowBtn" class="book-btn book-btn--primary" type="button">
-                <!-- arrow down icon -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M12 3v12"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="m7 11 5 5 5-5"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M5 21h14"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                Borrow Book
-              </button>
-
-              <button id="returnBtn" class="book-btn book-btn--ghost" type="button" disabled>
-                <!-- arrow up icon -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M12 21V9"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="m7 13 5-5 5 5"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M5 3h14"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                Return Book
-              </button>
-
-              <a class="book-btn book-btn--link" href="catalog.html">
-                Back to Browse
-                <!-- arrow right -->
-                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M5 12h14"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="m13 6 6 6-6 6"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </a>
-            </div>
-
-            <div id="systemMessage" class="system-message" aria-live="polite"></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- History -->
-      <section class="history">
-        <div class="container">
-          <div class="history__head">
-            <h2 class="section-title">
-              <!-- clock icon -->
+            <span class="inline">
+              <!-- tag icon -->
               <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"
-                  stroke="currentColor"
-                  stroke-width="2"
-                />
-                <path
-                  d="M12 6v6l4 2"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                <path d="M20 13l-7 7-11-11V2h7l11 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                <path d="M7.5 7.5h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
               </svg>
-              Recently Viewed
-            </h2>
-          </div>
-
-          <ul id="historyList" class="history__list">
-            <li class="history__empty">No items yet. Browse books to build history.</li>
-          </ul>
-        </div>
-      </section>
-    </main>
-    <!-- ===== FOOTER (NEW) ===== -->
-    <footer>
-      <div class="wrap" id="foot-grid">
-        <div>
-          <div id="foot-brand">
-            <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
-            <span id="foot-name">Bookify</span>
-          </div>
-          <p id="tag">
-            Your gateway to endless knowledge.<br />
-            Discover, borrow, and explore our curated collection of literary treasures.
+              <span id="bookCategory"></span>
+            </span>
           </p>
         </div>
+      </div>
+    </section>
 
-        <div>
-          <h4>EXPLORE</h4>
-          <a href="about.html">About Us</a>
-          <a href="catalog.html">Browse Catalog</a>
-          <a href="catalog.html">Fiction</a>
-          <a href="catalog.html">Non-Fiction</a>
+    <!-- Details -->
+    <section class="details">
+      <div class="container details__grid">
+        <!-- Right / Cover card -->
+        <aside class="card cover-card">
+          <div class="cover" id="coverWrap">
+            <img id="bookCover" src="images/placeholder-cover.png" alt="Book cover" loading="lazy" />
+          </div>
+
+          <div class="cover-meta">
+            <div class="cover-meta__row">
+              <span class="meta-left">
+                <!-- barcode icon -->
+                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M7 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M10 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M14 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M20 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <span class="muted">ISBN</span>
+              </span>
+              <strong id="bookIsbn"></strong>
+            </div>
+
+            <div class="cover-meta__row">
+              <span class="meta-left">
+                <!-- calendar icon -->
+                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7 3v2M17 3v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M4 7h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M6 5h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
+                    stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+                <span class="muted">Year</span>
+              </span>
+              <strong id="bookYear"></strong>
+            </div>
+
+            <div class="cover-meta__row">
+              <span class="meta-left">
+                <!-- globe icon -->
+                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2" />
+                  <path d="M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M12 2c3 3 3 17 0 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M12 2c-3 3-3 17 0 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <span class="muted">Language</span>
+              </span>
+              <strong id="bookLanguage"></strong>
+            </div>
+          </div>
+
+          <div class="availability">
+            <div class="availability__left">
+              <div class="availability__label">
+                <!-- info icon -->
+                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2" />
+                  <path d="M12 10v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M12 7h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+                </svg>
+                Status
+              </div>
+
+              <div id="bookStatus" class="badge badge--available">Available</div>
+            </div>
+
+            <div class="availability__right">
+              <div class="availability__hint" id="bookAvailabilityText"></div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Left / Info card -->
+        <article class="card info-card">
+          <div class="info-head">
+            <h2 class="section-title">
+              <!-- swap icon -->
+              <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 7h13l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M17 17H4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Borrow / Return
+            </h2>
+            <span class="muted">Quick actions & details</span>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-item__label">
+                <!-- tag icon -->
+                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 13l-7 7-11-11V2h7l11 11Z" stroke="currentColor" stroke-width="2"
+                    stroke-linejoin="round" />
+                  <path d="M7.5 7.5h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+                </svg>
+                Category
+              </div>
+              <div class="info-item__value" id="bookCategory2"></div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-item__label">
+                <!-- hash icon -->
+                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 3 7 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M17 3 15 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M4 8h17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M3 16h17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                ID
+              </div>
+              <div class="info-item__value" id="bookId"></div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-item__label">
+                <!-- layers icon -->
+                <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3 3 8l9 5 9-5-9-5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <path d="M3 12l9 5 9-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <path d="M3 16l9 5 9-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+                Copies
+              </div>
+              <div class="info-item__value" id="bookCopies">1</div>
+            </div>
+          </div>
+
+          <div class="desc-block">
+            <h3 class="desc-title">
+              <!-- file-text icon -->
+              <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z" stroke="currentColor"
+                  stroke-width="2" stroke-linejoin="round" />
+                <path d="M14 2v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                <path d="M8 13h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M8 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              Description
+            </h3>
+
+            <p id="bookDescription" class="desc-text desc-text--clamp"></p>
+
+            <button id="toggleDescBtn" class="read-more-btn" type="button">
+              <span>Read more</span>
+              <!-- chevron down -->
+              <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="actions">
+            <button id="borrowBtn" class="book-btn book-btn--primary" type="button">
+              <!-- arrow down icon -->
+              <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="m7 11 5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              Borrow Book
+            </button>
+
+            <button id="returnBtn" class="book-btn book-btn--ghost" type="button" disabled>
+              <!-- arrow up icon -->
+              <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="m7 13 5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M5 3h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              Return Book
+            </button>
+
+            <a class="book-btn book-btn--link" href="catalog.html">
+              Back to Browse
+              <!-- arrow right -->
+              <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="m13 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+
+          <div id="systemMessage" class="system-message" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- History -->
+    <section class="history">
+      <div class="container">
+        <div class="history__head">
+          <h2 class="section-title">
+            <!-- clock icon -->
+            <svg class="ico ico--sm" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2" />
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Recently Viewed
+          </h2>
         </div>
 
-        <div>
-          <h4>ACCOUNT</h4>
-          <a href="profile.html">My Profile</a>
-          <a href="profile.html">Borrowed Books</a>
-          <a href="profile.html">Reading History</a>
+        <ul id="historyList" class="history__list">
+          <li class="history__empty">No items yet. Browse books to build history.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <!-- ===== FOOTER (NEW) ===== -->
+  <footer>
+    <div class="wrap" id="foot-grid">
+      <div>
+        <div id="foot-brand">
+          <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
+          <span id="foot-name">Bookify</span>
         </div>
-
-        <div>
-          <h4>LIBRARY HOURS</h4>
-          <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
-          <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
-          <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
-        </div>
+        <p id="tag">
+          Your gateway to endless knowledge.<br />
+          Discover, borrow, and explore our curated collection of literary treasures.
+        </p>
       </div>
 
-      <div class="wrap" id="bottom">
-        <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
-        <div id="links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="contact.html">Contact Us</a>
-        </div>
+      <div>
+        <h4>EXPLORE</h4>
+        <a href="about.html">About Us</a>
+        <a href="catalog.html">Browse Catalog</a>
+        <a href="catalog.html">Fiction</a>
+        <a href="catalog.html">Non-Fiction</a>
       </div>
-    </footer>
 
-    <script src="borrow.js"></script>
-    <script src="darkmode.js"></script>
-  </body>
+      <div>
+        <h4>ACCOUNT</h4>
+        <a href="profile.html">My Profile</a>
+        <a href="profile.html">Borrowed Books</a>
+        <a href="profile.html">Reading History</a>
+      </div>
+
+      <div>
+        <h4>LIBRARY HOURS</h4>
+        <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
+        <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
+        <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
+      </div>
+    </div>
+
+    <div class="wrap" id="bottom">
+      <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
+      <div id="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="borrow.js" defer></script>
+  <script src="darkmode.js"></script>
+
+</body>
+
 </html>

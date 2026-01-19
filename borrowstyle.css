@@ -563,3 +563,23 @@ html[data-theme="dark"] .history__card,
 body.dark .history__card {
   box-shadow: 0 10px 22px rgba(0,0,0,0.38);
 }
+/* =========================
+   RESPONSIVE – Mobile
+   ========================= */
+@media (max-width: 480px) {
+
+}
+
+/* =========================
+   RESPONSIVE – Tablet
+   ========================= */
+@media (min-width: 481px) and (max-width: 768px) {
+
+}
+
+/* =========================
+   RESPONSIVE – Desktop
+   ========================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+}

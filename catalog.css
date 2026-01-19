@@ -251,9 +251,18 @@
 
 @media (max-width: 520px) {
   .books-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
+
+  .book-card {
+    padding: 12px;
+  }
+
+  .book-title { font-size: 14px; }
+  .book-author { font-size: 12px; }
 }
+
 
 /* ===== DARK MODE (Catalog page) ===== */
 html[data-theme="dark"] .catalog-input,
@@ -281,3 +290,38 @@ body.dark .chip:hover {
   border-color: var(--orange);
   color: var(--orange);
 }
+/* ===============================
+   Responsive (Required)
+   Mobile / Tablet / Desktop
+   =============================== */
+
+/* Desktop (769–1024) */
+@media (max-width: 1024px) {
+  .books-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet (481–768) */
+@media (max-width: 768px) {
+  .catalog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (עד 480) */
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr); /* << זה מה שרצית */
+    gap: 16px;
+  }
+
+  .book-card { padding: 12px; }
+  .book-title { font-size: 14px; }
+  .book-author { font-size: 12px; }
+}
+
