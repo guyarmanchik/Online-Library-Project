@@ -217,3 +217,23 @@ body.dark [data-icon] {
   background: rgba(228, 106, 16, 0.22);
   color: rgba(255, 255, 255, 0.92);
 }
+/* =========================
+   RESPONSIVE – Mobile
+   ========================= */
+@media (max-width: 480px) {
+
+}
+
+/* =========================
+   RESPONSIVE – Tablet
+   ========================= */
+@media (min-width: 481px) and (max-width: 768px) {
+
+}
+
+/* =========================
+   RESPONSIVE – Desktop
+   ========================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+}

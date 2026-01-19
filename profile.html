@@ -2,192 +2,200 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookify | Profile</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"/>
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="headerfooter.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookify | Profile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="headerfooter.css">
+  <link rel="stylesheet" href="profile.css">
 </head>
 
-<header class="bf-header">
-        <div class="bf-header__inner container">
-            <a class="bf-brand" href="./home.html">
-                <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'">
+<body>
 
-            </a>
+  <!-- ===== HEADER ===== -->
+  <header class="bf-header">
+    <div class="bf-header__inner container">
 
-            <nav aria-label="Primary" class="bf-nav">
-                <a class="bf-nav__link" href="home.html">Home</a>
-                <a class="bf-nav__link" href="catalog.html">Browse</a>
-                <a class="bf-nav__link" href="about.html">About</a>
-                <a class="bf-nav__link" href="contact.html">Contact Us</a>
-            </nav>
+      <a class="bf-brand" href="./home.html">
+        <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo"
+             onerror="this.style.display='none'">
+      </a>
 
-            <div class="bf-auth">
-                <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">
-                    🌙
-                </button>
-                <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
-                <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
-            </div>
+      <!-- ☰ Hamburger (phone only) -->
+      <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
 
-        </div>
-    </header>
+      <!-- NAV -->
+      <nav aria-label="Primary" class="bf-nav">
+        <a class="bf-nav__link" href="home.html">Home</a>
+        <a class="bf-nav__link" href="catalog.html">Browse</a>
+        <a class="bf-nav__link" href="about.html">About</a>
+        <a class="bf-nav__link" href="contact.html">Contact Us</a>
 
-<div class="mybooks-title">
-  <h1>My Books</h1>
-  <p>Manage your borrowed books and reading history</p>
-</div>
+        <!-- 🌙 Dark mode inside hamburger (mobile only) -->
+        <button class="bf-themeToggle bf-themeToggle--inMenu"
+                id="themeToggleMobile"
+                aria-label="Toggle dark mode">
+          🌙
+        </button>
+      </nav>
 
-<div class="profile-card">
-  <div class="profile-left">
-    <div class="avatar">
-      <span id="avatarLetter">Y</span>
-    </div>
-
-    <div class="user-info">
-      <h2 id="userName">Yossi</h2>
-      <p id="userEmail">Yossi@gmail.com</p>
-
-      <div class="joined">
-        <span class="icon">📅</span>
-        <span id="joinedDate">Joined December 2025</span>
+      <!-- Actions -->
+      <div class="bf-auth">
+        <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">
+          🌙
+        </button>
+        <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
+        <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
       </div>
+
     </div>
+  </header>
+
+  <!-- ===== PAGE CONTENT ===== -->
+  <div class="mybooks-title">
+    <h1>My Books</h1>
+    <p>Manage your borrowed books and reading history</p>
   </div>
 
-  <button class="edit-btn">
-    ✏️ Edit Profile
-  </button>
-</div>
+  <div class="profile-card">
+    <div class="profile-left">
+      <div class="avatar">
+        <span id="avatarLetter">Y</span>
+      </div>
 
-<section class="profile-area">
-  <!-- Stats -->
-  <section class="stats">
-    <div class="stat-card">
-      <div class="icon icon-blue">📘</div>
-      <div class="stat-text">
-        <div class="stat-number" id="statBorrowed">0</div>
-        <div class="stat-label">Currently Borrowed</div>
+      <div class="user-info">
+        <h2 id="userName">Yossi</h2>
+        <p id="userEmail">Yossi@gmail.com</p>
+
+        <div class="joined">
+          <span class="icon">📅</span>
+          <span id="joinedDate">Joined December 2025</span>
+        </div>
       </div>
     </div>
 
-    <div class="stat-card">
-      <div class="icon icon-yellow">⚠️</div>
-      <div class="stat-text">
-        <div class="stat-number" id="statOverdue">0</div>
-        <div class="stat-label">Overdue</div>
-      </div>
-    </div>
+    <button class="edit-btn">✏️ Edit Profile</button>
+  </div>
 
-    <div class="stat-card">
-      <div class="icon icon-green">✅</div>
-      <div class="stat-text">
-        <div class="stat-number" id="statReturned">0</div>
-        <div class="stat-label">Books Returned</div>
+  <section class="profile-area">
+
+    <!-- Stats -->
+    <section class="stats">
+      <div class="stat-card">
+        <div class="icon icon-blue">📘</div>
+        <div class="stat-text">
+          <div class="stat-number" id="statBorrowed">0</div>
+          <div class="stat-label">Currently Borrowed</div>
+        </div>
       </div>
-    </div>
+
+      <div class="stat-card">
+        <div class="icon icon-yellow">⚠️</div>
+        <div class="stat-text">
+          <div class="stat-number" id="statOverdue">0</div>
+          <div class="stat-label">Overdue</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="icon icon-green">✅</div>
+        <div class="stat-text">
+          <div class="stat-number" id="statReturned">0</div>
+          <div class="stat-label">Books Returned</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="panel">
+      <div class="tabs">
+        <button class="tab active" id="tabCurrent" type="button">
+          🕒 Current (<span id="countCurrent">0</span>)
+        </button>
+
+        <button class="tab" id="tabHistory" type="button">
+          ✔️ History (<span id="countHistory">0</span>)
+        </button>
+      </div>
+
+      <div class="content">
+
+        <div id="currentView" class="view">
+          <div id="currentList" class="list"></div>
+
+          <div id="currentEmpty" class="empty hidden">
+            <div class="empty-icon">📚</div>
+            <h3>No books borrowed</h3>
+            <p>Browse our collection and start reading!</p>
+            <a class="btn" href="catalog.html">Browse Books</a>
+          </div>
+        </div>
+
+        <div id="historyView" class="view hidden">
+          <div id="historyList" class="list"></div>
+
+          <div id="historyEmpty" class="empty hidden">
+            <div class="empty-icon">🕵️‍♂️</div>
+            <h3>No history yet</h3>
+            <p>Open a few books and you’ll see them here.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </section>
 
-  <!-- Tabs + Content -->
-  <section class="panel">
-    <div class="tabs">
-      <button class="tab active" id="tabCurrent" type="button">
-        <span class="tab-ic">🕒</span>
-        Current (<span id="countCurrent">0</span>)
-      </button>
-
-      <button class="tab" id="tabHistory" type="button">
-        <span class="tab-ic">✔️</span>
-        History (<span id="countHistory">0</span>)
-      </button>
-    </div>
-
-    <div class="content">
-
-    <!-- Current -->
-      <div id="currentView" class="view">
-        <div id="currentList" class="list"></div>
-
-        <div id="currentEmpty" class="empty hidden">
-          <div class="empty-icon">📚</div>
-          <h3>No books borrowed</h3>
-          <p>Browse our collection and start reading!</p>
-          <a class="btn" href="catalog.html">Browse Books</a>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap" id="foot-grid">
+      <div>
+        <div id="foot-brand">
+          <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
+          <span id="foot-name">Bookify</span>
         </div>
+        <p id="tag">
+          Your gateway to endless knowledge.<br>
+          Discover, borrow, and explore our curated collection.
+        </p>
       </div>
 
-    <!-- History -->
-      <div id="historyView" class="view hidden">
-        <div id="historyList" class="list"></div>
-
-        <div id="historyEmpty" class="empty hidden">
-          <div class="empty-icon">🕵️‍♂️</div>
-          <h3>No history yet</h3>
-          <p>Open a few books and you’ll see them here.</p>
-        </div>
+      <div>
+        <h4>EXPLORE</h4>
+        <a href="about.html">About Us</a>
+        <a href="catalog.html">Browse Catalog</a>
       </div>
 
-    </div>
-  </section>
-
-</section>
-
-
-
-<footer>
-  <div class="wrap" id="foot-grid">
-    <div>
-      <div id="foot-brand">
-        <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
-        <span id="foot-name">Bookify</span>
+      <div>
+        <h4>ACCOUNT</h4>
+        <a href="profile.html">My Profile</a>
+        <a href="profile.html">Borrowed Books</a>
       </div>
-      <p id="tag">
-        Your gateway to endless knowledge.<br />
-        Discover, borrow, and explore our curated collection of literary treasures.
-      </p>
+
+      <div>
+        <h4>LIBRARY HOURS</h4>
+        <div class="hrs"><span>Mon–Fri</span><span>9AM–9PM</span></div>
+        <div class="hrs"><span>Sat</span><span>10AM–6PM</span></div>
+      </div>
     </div>
 
-    <div>
-      <h4>EXPLORE</h4>
-      <a href="about.html">About Us</a>
-      <a href="catalog.html">Browse Catalog</a>
-      <a href="catalog.html">Fiction</a>
-      <a href="catalog.html">Non-Fiction</a>
+    <div class="wrap" id="bottom">
+      <span>© <span id="year"></span> Bookify Library</span>
+      <div id="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </div>
+  </footer>
 
-    <div>
-      <h4>ACCOUNT</h4>
-      <a href="profile.html">My Profile</a>
-      <a href="profile.html">Borrowed Books</a>
-      <a href="profile.html">Reading History</a>
-    </div>
-
-    <div>
-      <h4>LIBRARY HOURS</h4>
-      <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
-      <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
-      <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
-    </div>
-  </div>
-
-  <div class="wrap" id="bottom">
-    <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
-    <div id="links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="contact.html">Contact Us</a>
-    </div>
-  </div>
-</footer>
-
-<script src="profile.js"></script>
-<script src="Home.js" defer></script>
+  <!-- ===== SCRIPTS ===== -->
+  <script src="profile.js" defer></script>
+  <script src="darkmode.js"></script>
+  <script src="header.js" defer></script>
 
 </body>
 

@@ -292,3 +292,23 @@
 .edit-btn:hover{
   background: #f7f7f7;
 }
+/* =========================
+   RESPONSIVE – Mobile
+   ========================= */
+@media (max-width: 480px) {
+
+}
+
+/* =========================
+   RESPONSIVE – Tablet
+   ========================= */
+@media (min-width: 481px) and (max-width: 768px) {
+
+}
+
+/* =========================
+   RESPONSIVE – Desktop
+   ========================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+}

@@ -78,11 +78,13 @@ img { max-width: 100%; height: auto; display: block; }
     align-items: center;
     gap: 10px;
     font-weight: 800;
+    flex: 0 0 auto;
   }
   
   .bf-logo {
     width: 64px;
     height: 64px;
+    flex-shrink: 0;
   }
   
   /* ===== NAV ===== */
@@ -164,16 +166,21 @@ img { max-width: 100%; height: auto; display: block; }
   }
   
   /* ===== RESPONSIVE ===== */
-  @media (max-width: 576px) {
-    .bf-nav {
-      display: none;
-    }
-  
-    .bf-header__inner {
-      padding-left: 12px;
-      padding-right: 12px;
-    }
+  @media (max-width: 768px) {
+  .bf-header__inner {
+    padding-left: 12px;
+    padding-right: 12px;
   }
+
+  .bf-nav { 
+    display: none; 
+  }
+
+  .bf-nav.is-open { 
+    display: flex; 
+  }
+}
+
   
   /* ===== FOOTER ===== */
 .site-footer, footer {
@@ -310,3 +317,75 @@ img { max-width: 100%; height: auto; display: block; }
       max-width: none;
     }
   }
+  /* =========================
+   RESPONSIVE – Mobile
+   ========================= */
+
+/* ===== HAMBURGER BUTTON ===== */
+.bf-burger{
+  display: none; /* בדסקטופ לא רואים */
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* תפריט נפתח במובייל */
+@media (max-width: 480px){
+  .bf-header__inner{ position: relative; }
+   .bf-logo{
+    width: 46px;
+    height: 46px;
+  }
+
+  .bf-burger{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* הופך את ה-nav לתפריט נפתח */
+  .bf-nav{
+    position: absolute;
+    top: 76px;
+    left: 12px;
+    right: 12px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 12px;
+
+    flex-direction: column;
+    gap: 10px;
+
+    z-index: 999;
+  }
+}
+@media (min-width: 769px){
+  .bf-burger{ display: none; }
+  .bf-nav{ display: flex; }
+}
+/* כפתור דארק שבתוך התפריט – ברירת מחדל לא מוצג */
+.bf-themeToggle--inMenu {
+  display: none;
+}
+
+/* רק בפלאפון: מסתירים את הדארק שבחוץ ומראים את זה שבפנים */
+@media (max-width: 480px){
+  .bf-auth .bf-themeToggle{
+    display: none;
+  }
+
+  .bf-themeToggle--inMenu{
+    display: grid;
+    margin-top: 8px;
+  }
+
+  /* לוודא שהלוגו לא נעלם */
+  .bf-brand{ flex: 0 0 auto; }
+  .bf-logo{ flex-shrink: 0; width: 46px; height: 46px; }
+}
+
