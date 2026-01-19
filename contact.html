@@ -155,6 +155,7 @@
       </section>
     </div>
   </main>
+
   <footer>
       <div class="wrap" id="foot-grid">
         <div>
@@ -200,27 +201,9 @@
         </div>
       </div>
     </footer>
-<script src="darkmode.js"></script>
 
-<script>
-  // Hamburger toggle (Contact page)
-  document.addEventListener("DOMContentLoaded", () => {
-    const burger = document.getElementById("bfBurger");
-    const nav = document.querySelector(".bf-nav");
-    if (!burger || !nav) return;
-
-    burger.addEventListener("click", () => {
-      nav.classList.toggle("is-open");
-    });
-
-    // close menu after clicking a link (nice on mobile)
-    nav.addEventListener("click", (e) => {
-      if (e.target.classList.contains("bf-nav__link")) {
-        nav.classList.remove("is-open");
-      }
-    });
-  });
-</script>
+  <script src="darkmode.js"></script>
+  <script src="header.js"></script>
 
 </body>
 </html>
