@@ -28,10 +28,17 @@ body.dark {
   --shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
 }
 
-html { color-scheme: light; }
-html[data-theme="dark"] { color-scheme: dark; }
+html {
+  color-scheme: light;
+}
 
-* { box-sizing: border-box; }
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -40,8 +47,16 @@ body {
   color: var(--text);
 }
 
-a { text-decoration: none; color: inherit; }
-img { max-width: 100%; height: auto; display: block; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 /* shared width helpers used across pages */
 .wrap {
@@ -54,302 +69,153 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 auto;
 }
 
-/* ===== HEADER BASE ===== */
+/* =========================
+   HEADER
+   ========================= */
 .bf-header {
-    width: 100%;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-  }
-  
-  .bf-header__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 14px 20px;
-  
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-  
-  /* ===== BRAND ===== */
-  .bf-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    flex: 0 0 auto;
-  }
-  
-  .bf-logo {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
-  }
-  
-  /* ===== NAV ===== */
-  .bf-nav {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  
-  .bf-nav__link {
-    padding: 8px 12px;
-    border-radius: 999px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  
-  .bf-nav__link:hover {
-    background: rgba(228, 106, 16, 0.10);
-    color: var(--blue1);
-  }
-  
-  /* Active state (class-based) */
-  .bf-nav__link.active {
-    background: rgba(228, 106, 16, 0.14);
-    color: var(--blue1);
-  }
-  
-  /* Active state (ARIA-based – preferred) */
-  .bf-nav__link[aria-current="page"] {
-    background: rgba(228, 106, 16, 0.14);
-    color: var(--blue1);
-  }
-  
-  /* ===== AUTH / ACTIONS ===== */
-  .bf-auth {
-    display: flex;
-    gap: 10px;
-  }
-  
-  /* ===== BUTTONS ===== */
-  .bf-btn {
-    border: 1px solid var(--border);
-    background: var(--card);
-    padding: 10px 14px;
-    border-radius: 14px;
-    font-weight: 800;
-    cursor: pointer;
-  }
-  
-  .bf-btn--primary {
-    border: none;
-    background: linear-gradient(110deg, var(--blue1), var(--blue2));
-    color: #fff;
-    box-shadow: 0 12px 26px rgba(228, 106, 16, 0.28);
-  }
-  
-  .bf-btn--ghost:hover {
-    border-color: rgba(228, 106, 16, 0.35);
-    background: rgba(228, 106, 16, 0.08);
-  }
-  
-  /* ===== THEME TOGGLE ===== */
-  .bf-themeToggle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--card);
-    font-size: 18px;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  
-  .bf-themeToggle:hover {
-    background: rgba(228, 106, 16, 0.08);
-    transform: scale(1.05);
-  }
-  
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-  .bf-header__inner {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .bf-nav { 
-    display: none; 
-  }
-
-  .bf-nav.is-open { 
-    display: flex; 
-  }
+  width: 100%;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
 }
 
-  
-  /* ===== FOOTER ===== */
-.site-footer, footer {
-    background: linear-gradient(180deg, #3a1f14, #1f0f08);
-    color: rgba(255, 255, 255, 0.86);
-    margin-top: 40px;
-  }
-  
-  /* Main footer grid */
-  #foot-grid {
-    padding: 64px 0 46px;
-    display: grid;
-    grid-template-columns: 1.3fr 0.7fr 0.7fr 1fr;
-    gap: 44px;
-  }
-  
-  /* Brand row */
-  #foot-brand {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-bottom: 8px;
-  }
-  
-  /* Logo */
-  #foot-logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 14px;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    padding: 6px;
-    flex-shrink: 0;
-  }
-  
-  #foot-logo img {
-    width: 85%;
-    height: auto;
-    object-fit: contain;
-  }
-  
-  /* Brand name */
-  #foot-name {
-    font-size: 26px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1;
-  }
-  
-  /* Tagline */
-  #tag {
-    margin: 0;
-    margin-top: 4px;
-    color: rgba(255, 255, 255, 0.60);
-    line-height: 1.75;
-    max-width: 360px;
-  }
-  
-  /* Column titles */
-  footer h4 {
-    margin: 6px 0 16px;
-    font-size: 14px;
-    letter-spacing: 0.12em;
-    font-weight: 900;
-    color: #f3d2b3;
-  }
-  
-  /* Footer links */
-  footer a {
-    display: block;
-    padding: 9px 0;
-    color: rgba(255, 255, 255, 0.78);
-    font-weight: 650;
-  }
-  
-  footer a:hover {
-    color: rgba(255, 255, 255, 0.9);
-  }
-  
-  /* Hours rows */
-  .hrs {
-    display: flex;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 9px 0;
-    color: rgba(255, 255, 255, 0.62);
-    font-weight: 650;
-  }
-  
-  /* Bottom bar */
-  #bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 22px 0 30px;
-    display: flex;
-    justify-content: space-between;
-    gap: 18px;
-    flex-wrap: wrap;
-    color: rgba(255, 255, 255, 0.45);
-    font-weight: 650;
-  }
-  
-  /* Bottom links */
-  #links {
-    display: flex;
-    gap: 26px;
-    flex-wrap: wrap;
-  }
-  
-  #links a {
-    color: rgba(255, 255, 255, 0.65);
-    font-weight: 800;
-    padding: 0;
-  }
-  
-  /* ===== FOOTER RESPONSIVE ===== */
-  @media (max-width: 1100px) {
-    #foot-grid {
-      grid-template-columns: 1.2fr 1fr 1fr;
-    }
-  
-    #foot-grid > div:last-child {
-      grid-column: 1 / -1;
-      max-width: 520px;
-    }
-  }
-  
-  @media (max-width: 780px) {
-    #foot-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    #tag {
-      max-width: none;
-    }
-  }
-  /* =========================
-   RESPONSIVE – Mobile
-   ========================= */
+.bf-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
 
-/* ===== HAMBURGER BUTTON ===== */
-.bf-burger{
-  display: none; /* בדסקטופ לא רואים */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  position: relative; /* בשביל ה-dropdown במובייל */
+}
+
+/* BRAND */
+.bf-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+
+.bf-logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+/* NAV (Desktop: center) */
+.bf-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.bf-nav__link {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.bf-nav__link:hover {
+  background: rgba(228, 106, 16, 0.10);
+  color: var(--blue1);
+}
+
+.bf-nav__link.active,
+.bf-nav__link[aria-current="page"] {
+  background: rgba(228, 106, 16, 0.14);
+  color: var(--blue1);
+}
+
+/* AUTH (always right) */
+.bf-auth {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Buttons */
+.bf-btn {
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.bf-btn--primary {
+  border: none;
+  background: linear-gradient(110deg, var(--blue1), var(--blue2));
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(228, 106, 16, 0.28);
+}
+
+.bf-btn--ghost:hover {
+  border-color: rgba(228, 106, 16, 0.35);
+  background: rgba(228, 106, 16, 0.08);
+}
+
+/* Theme toggle */
+.bf-themeToggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 18px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.bf-themeToggle:hover {
+  background: rgba(228, 106, 16, 0.08);
+  transform: scale(1.05);
+}
+
+/* Hamburger (default hidden) */
+.bf-burger {
+  display: none;
   border: 1px solid var(--border);
   background: var(--card);
   border-radius: 12px;
   padding: 10px 12px;
   font-size: 18px;
   cursor: pointer;
+  margin-left: 8px; /* צמוד ללוגו */
 }
 
-/* תפריט נפתח במובייל */
-@media (max-width: 480px){
-  .bf-header__inner{ position: relative; }
-   .bf-logo{
-    width: 46px;
-    height: 46px;
-  }
+/* dark button inside menu default hidden */
+.bf-themeToggle--inMenu {
+  display: none;
+}
 
-  .bf-burger{
+/* ===== TABLET + PHONE (<=1024): hamburger + dropdown nav ===== */
+@media (max-width: 1024px) {
+  .bf-burger {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* הופך את ה-nav לתפריט נפתח */
-  .bf-nav{
+  /* ברירת מחדל: תפריט סגור */
+  .bf-nav {
+    display: none;
+  }
+
+  /* תפריט פתוח */
+  .bf-nav.is-open {
+    display: flex;
     position: absolute;
-    top: 76px;
+    top: calc(100% + 10px);
     left: 12px;
     right: 12px;
 
@@ -361,31 +227,162 @@ img { max-width: 100%; height: auto; display: block; }
     flex-direction: column;
     gap: 10px;
 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     z-index: 999;
   }
 }
-@media (min-width: 769px){
-  .bf-burger{ display: none; }
-  .bf-nav{ display: flex; }
-}
-/* כפתור דארק שבתוך התפריט – ברירת מחדל לא מוצג */
-.bf-themeToggle--inMenu {
-  display: none;
-}
 
-/* רק בפלאפון: מסתירים את הדארק שבחוץ ומראים את זה שבפנים */
-@media (max-width: 480px){
-  .bf-auth .bf-themeToggle{
+/* ===== PHONE (<=480): tighten header + move dark toggle into menu ===== */
+@media (max-width: 480px) {
+  .bf-header__inner {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .bf-logo {
+    width: 46px;
+    height: 46px;
+  }
+
+  /* hide top dark button, show inside menu */
+  .bf-auth .bf-themeToggle {
     display: none;
   }
 
-  .bf-themeToggle--inMenu{
+  .bf-themeToggle--inMenu {
     display: grid;
     margin-top: 8px;
   }
-
-  /* לוודא שהלוגו לא נעלם */
-  .bf-brand{ flex: 0 0 auto; }
-  .bf-logo{ flex-shrink: 0; width: 46px; height: 46px; }
 }
 
+/* =========================
+   FOOTER
+   ========================= */
+.site-footer,
+footer {
+  background: linear-gradient(180deg, #3a1f14, #1f0f08);
+  color: rgba(255, 255, 255, 0.86);
+  margin-top: 40px;
+}
+
+/* Main footer grid */
+#foot-grid {
+  padding: 64px 0 46px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr 0.7fr 1fr;
+  gap: 44px;
+}
+
+/* Brand row */
+#foot-brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+/* Logo */
+#foot-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+#foot-logo img {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+}
+
+#foot-name {
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+#tag {
+  margin: 0;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.60);
+  line-height: 1.75;
+  max-width: 360px;
+}
+
+footer h4 {
+  margin: 6px 0 16px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  font-weight: 900;
+  color: #f3d2b3;
+}
+
+footer a {
+  display: block;
+  padding: 9px 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 650;
+}
+
+footer a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hrs {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 9px 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 650;
+}
+
+#bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 22px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 650;
+}
+
+#links {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+#links a {
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 800;
+  padding: 0;
+}
+
+/* footer responsive */
+@media (max-width: 1100px) {
+  #foot-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+
+  #foot-grid > div:last-child {
+    grid-column: 1 / -1;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 780px) {
+  #foot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #tag {
+    max-width: none;
+  }
+}

@@ -226,3 +226,12 @@ html[data-theme="dark"] .photo{
 html[data-theme="dark"] .services li::before{
   background: rgba(228,106,16,0.22);
 }
+@media (max-width: 480px) {
+  .bf-nav {
+    display: none;
+  }
+
+  .bf-nav.is-open {
+    display: flex;
+  }
+}

@@ -66,12 +66,4 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategory();
   renderHero();
 });
-// ===== Hamburger menu =====
-const burger = document.getElementById("bfBurger");
-const nav = document.querySelector(".bf-nav");
 
-if (burger && nav) {
-  burger.addEventListener("click", () => {
-    nav.classList.toggle("is-open");
-  });
-}

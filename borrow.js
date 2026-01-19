@@ -193,20 +193,4 @@ fetch("./books.json")
     document.body.innerHTML =
       "<h2 style='padding:20px'>Error loading books.json</h2>";
   });
-// ===== Hamburger (Borrow page) =====
-document.addEventListener("DOMContentLoaded", () => {
-  const burger = document.getElementById("bfBurger");
-  const nav = document.querySelector(".bf-nav");
-  if (!burger || !nav) return;
 
-  burger.addEventListener("click", () => {
-    nav.classList.toggle("is-open");
-  });
-
-  // close after clicking a link
-  nav.addEventListener("click", (e) => {
-    if (e.target.classList.contains("bf-nav__link")) {
-      nav.classList.remove("is-open");
-    }
-  });
-});

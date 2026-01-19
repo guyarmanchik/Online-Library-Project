@@ -6,7 +6,7 @@
     <title>Catalog | Bookify</title>
 
     <!-- Your existing styles -->
-     <link rel="stylesheet" href="headerfooter.css">
+    <link rel="stylesheet" href="headerfooter.css">
     <!-- Catalog page styles -->
     <link rel="stylesheet" href="catalog.css" />
 
@@ -20,69 +20,67 @@
 
   <body class="catalog-page">
     <!-- ===== HEADER (your code) ===== -->
-   <header class="bf-header">
-  <div class="bf-header__inner container">
-    <a class="bf-brand" href="home.html">
-      <img
-        class="bf-logo"
-        src="images/Newlogo2.png"
-        alt="Bookify logo"
-        onerror="this.style.display='none'"
-      />
-    </a>
+    <header class="bf-header">
+      <div class="bf-header__inner container">
+        <a class="bf-brand" href="home.html">
+          <img
+            class="bf-logo"
+            src="images/Newlogo2.png"
+            alt="Bookify logo"
+            onerror="this.style.display='none'"
+          />
+        </a>
 
-    <!-- ☰ Hamburger (phone only) -->
-    <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
+        <!-- ☰ Hamburger (phone only) -->
+        <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
 
-    <nav aria-label="Primary" class="bf-nav">
-      <a class="bf-nav__link" href="home.html">Home</a>
-      <a class="bf-nav__link" href="catalog.html" aria-current="page">Browse</a>
-      <a class="bf-nav__link" href="about.html">About</a>
-      <a class="bf-nav__link" href="contact.html">Contact Us</a>
+        <nav aria-label="Primary" class="bf-nav">
+          <a class="bf-nav__link" href="home.html">Home</a>
+          <a class="bf-nav__link" href="catalog.html" aria-current="page">Browse</a>
+          <a class="bf-nav__link" href="about.html">About</a>
+          <a class="bf-nav__link" href="contact.html">Contact Us</a>
 
-      <!-- 🌙 Dark mode inside hamburger (mobile only) -->
-      <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" aria-label="Toggle dark mode">
-        🌙
-      </button>
-    </nav>
+          <!-- 🌙 Dark mode inside hamburger (mobile only) -->
+          <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" aria-label="Toggle dark mode">
+            🌙
+          </button>
+        </nav>
 
-    <div class="bf-auth">
-      <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
-      <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
-      <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
-    </div>
-  </div>
-</header>
-
+        <div class="bf-auth">
+          <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
+          <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
+          <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
+        </div>
+      </div>
+    </header>
 
     <!-- ===== MAIN ===== -->
     <main class="catalog-main">
       <div class="wrap catalog-layout">
         <!-- Left filters -->
         <aside class="catalog-filters" aria-label="Filters">
-  <!-- SEARCH FIRST -->
-  <div class="catalog-search">
-    <label class="catalog-label" for="q">SEARCH</label>
-    <input id="q" class="catalog-input" type="search" placeholder="Search by title..." />
-    <p class="catalog-hint">Tip: choose a genre + search by title.</p>
-  </div>
+          <!-- SEARCH FIRST -->
+          <div class="catalog-search">
+            <label class="catalog-label" for="q">SEARCH</label>
+            <input id="q" class="catalog-input" type="search" placeholder="Search by title..." />
+            <p class="catalog-hint">Tip: choose a genre + search by title.</p>
+          </div>
 
-  <!-- THEN GENRE -->
-  <h3 class="catalog-label">GENRE</h3>
+          <!-- THEN GENRE -->
+          <h3 class="catalog-label">GENRE</h3>
 
-  <div class="catalog-chips" id="chips" role="group" aria-label="Genre filters">
-    <button class="chip active" type="button" data-filter="All">All</button>
-    <button class="chip" type="button" data-filter="Fiction">Fiction</button>
-    <button class="chip" type="button" data-filter="Non-Fiction">Non-Fiction</button>
-    <button class="chip" type="button" data-filter="Mystery">Mystery</button>
-    <button class="chip" type="button" data-filter="Science Fiction">Science Fiction</button>
-    <button class="chip" type="button" data-filter="Romance">Romance</button>
-    <button class="chip" type="button" data-filter="Biography">Biography</button>
-    <button class="chip" type="button" data-filter="History">History</button>
-    <button class="chip" type="button" data-filter="Self-Help">Self-Help</button>
-  </div>
-</aside>
-
+          <div class="catalog-chips" id="chips" role="group" aria-label="Genre filters">
+            <button class="chip active" type="button" data-filter="All">All</button>
+            <button class="chip" type="button" data-filter="Fiction">Fiction</button>
+            <button class="chip" type="button" data-filter="Non-Fiction">Non-Fiction</button>
+            <button class="chip" type="button" data-filter="Mystery">Mystery</button>
+            <button class="chip" type="button" data-filter="Science Fiction">Science Fiction</button>
+            <button class="chip" type="button" data-filter="Romance">Romance</button>
+            <button class="chip" type="button" data-filter="Biography">Biography</button>
+            <button class="chip" type="button" data-filter="History">History</button>
+            <button class="chip" type="button" data-filter="Self-Help">Self-Help</button>
+          </div>
+        </aside>
 
         <!-- Right content -->
         <section class="catalog-content" aria-label="Books">
@@ -144,7 +142,9 @@
         </div>
       </div>
     </footer>
+
     <script src="catalog.js"></script>
     <script src="darkmode.js"></script>
+    <script src="header.js"></script>
   </body>
 </html>

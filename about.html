@@ -287,27 +287,13 @@
     </div>
   </footer>
 
+  <!-- Footer year only -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    document.addEventListener("DOMContentLoaded", () => {
-      const burger = document.getElementById("bfBurger");
-      const nav = document.querySelector(".bf-nav");
-      if (!burger || !nav) return;
-
-      burger.addEventListener("click", () => {
-        nav.classList.toggle("is-open");
-      });
-
-      // סוגר תפריט אחרי בחירה
-      nav.addEventListener("click", (e) => {
-        if (e.target.classList.contains("bf-nav__link")) {
-          nav.classList.remove("is-open");
-        }
-      });
-    });
   </script>
 
   <script src="darkmode.js"></script>
+  <script src="header.js"></script>
 </body>
 
 </html>
