@@ -20,7 +20,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const countEl = document.getElementById("visibleCount");
 
   let activeGenre = "All";
-  let allBooks = []; 
+  let allBooks = [];
+
+  // ===== STORAGE HELPERS (sync status with profile/borrow) =====
+  // ✅ MUST MATCH profile.js
+  const BORROWED_KEY = "bookify_borrowed"; // [{id,title,author,cover,borrowedAt,...}]
+
+  function load(key, fallback) {
+    try {
+      return JSON.parse(localStorage.getItem(key)) ?? fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  // ✅ book considered borrowed if its id exists in bookify_borrowed
+  function isBorrowed(bookId) {
+    const borrowed = load(BORROWED_KEY, []);
+    return borrowed.some((x) => Number(x.id) === Number(bookId));
+  }
 
   function mapCategory(raw) {
     const c = (raw || "").trim().toLowerCase();
@@ -31,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (c === "mystery") return "Mystery";
     if (c === "romance") return "Romance";
 
+    // default
     return "Fiction";
   }
 
@@ -60,7 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const author = book.author || "Unknown";
     const genre = mapCategory(book.category);
     const cover = normalizeCoverPath(book.cover);
-    const available = !!book.available;
+
+    // ✅ Availability synced with localStorage bookify_borrowed
+    const available = !isBorrowed(book.id);
+
     const rating = pseudoRating(book);
 
     return `
@@ -110,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (countEl) countEl.textContent = String(list.length);
 
-    
     if (list.length === 0) {
       grid.innerHTML = EMPTY_CATEGORY_MESSAGE;
       return;
@@ -118,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     grid.innerHTML = list.map(createCard).join("");
 
-    
     grid.querySelectorAll(".book-card").forEach((card) => {
       const go = () => {
         const id = card.dataset.id;
@@ -127,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       card.addEventListener("click", go);
 
-      // ✅ keyboard support (Enter/Space)
+      // keyboard support (Enter/Space)
       card.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -142,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderBooks(filtered);
   }
 
-  
+  // chips filters
   if (chipsWrap) {
     chipsWrap.addEventListener("click", (e) => {
       const btn = e.target.closest(".chip");
@@ -156,10 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  
+  // search
   if (q) q.addEventListener("input", applyFilters);
 
-  
+  // load books
   fetch("books.json", { cache: "no-store" })
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status} (${res.statusText})`);
@@ -168,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       if (!Array.isArray(data)) throw new Error("books.json is not an array");
       allBooks = data;
-      applyFilters();      
+      applyFilters();
     })
     .catch((err) => {
       console.error("books.json load error:", err);
@@ -186,4 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (countEl) countEl.textContent = "0";
     });
+
+  // ✅ bonus: refresh badges when tab becomes active
+  window.addEventListener("focus", applyFilters);
 });
