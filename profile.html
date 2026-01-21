@@ -42,9 +42,7 @@
 
       <!-- Actions -->
       <div class="bf-auth">
-        <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">
-          🌙
-        </button>
+        <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
         <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
         <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
       </div>
@@ -52,33 +50,35 @@
     </div>
   </header>
 
-  <!-- ===== PAGE CONTENT ===== -->
-  <div class="mybooks-title">
-    <h1>My Books</h1>
-    <p>Manage your borrowed books and reading history</p>
-  </div>
+  <!-- ===== PAGE CONTENT (CENTERED WRAPPER) ===== -->
+  <section class="profile-area">
 
-  <div class="profile-card">
-    <div class="profile-left">
-      <div class="avatar">
-        <span id="avatarLetter">Y</span>
-      </div>
-
-      <div class="user-info">
-        <h2 id="userName">Yossi</h2>
-        <p id="userEmail">Yossi@gmail.com</p>
-
-        <div class="joined">
-          <span class="icon">📅</span>
-          <span id="joinedDate">Joined December 2025</span>
-        </div>
-      </div>
+    <!-- Title -->
+    <div class="mybooks-title">
+      <h1>My Books</h1>
+      <p>Manage your borrowed books and reading history</p>
     </div>
 
-    <button class="edit-btn">✏️ Edit Profile</button>
-  </div>
+    <!-- Profile Card -->
+    <div class="profile-card">
+      <div class="profile-left">
+        <div class="avatar">
+          <span id="avatarLetter">Y</span>
+        </div>
 
-  <section class="profile-area">
+        <div class="user-info">
+          <h2 id="userName">Yossi</h2>
+          <p id="userEmail">Yossi@gmail.com</p>
+
+          <div class="joined">
+            <span class="icon">📅</span>
+            <span id="joinedDate">Joined December 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="edit-btn">✏️ Edit Profile</a>
+    </div>
 
     <!-- Stats -->
     <section class="stats">
@@ -144,6 +144,7 @@
 
       </div>
     </section>
+
   </section>
 
   <!-- ===== FOOTER ===== -->
@@ -155,8 +156,8 @@
           <span id="foot-name">Bookify</span>
         </div>
         <p id="tag">
-          Your gateway to endless knowledge.<br>
-          Discover, borrow, and explore our curated collection.
+          Your gateway to endless knowledge.<br />
+          Discover, borrow, and explore our curated collection of literary treasures.
         </p>
       </div>
 
@@ -164,27 +165,31 @@
         <h4>EXPLORE</h4>
         <a href="about.html">About Us</a>
         <a href="catalog.html">Browse Catalog</a>
+        <a href="catalog.html">Fiction</a>
+        <a href="catalog.html">Non-Fiction</a>
       </div>
 
       <div>
         <h4>ACCOUNT</h4>
         <a href="profile.html">My Profile</a>
         <a href="profile.html">Borrowed Books</a>
+        <a href="profile.html">Reading History</a>
       </div>
 
       <div>
         <h4>LIBRARY HOURS</h4>
-        <div class="hrs"><span>Mon–Fri</span><span>9AM–9PM</span></div>
-        <div class="hrs"><span>Sat</span><span>10AM–6PM</span></div>
+        <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
+        <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
+        <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
       </div>
     </div>
 
     <div class="wrap" id="bottom">
-      <span>© <span id="year"></span> Bookify Library</span>
+      <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
       <div id="links">
         <a href="#">Privacy Policy</a>
-        <a href="#">Terms</a>
-        <a href="contact.html">Contact</a>
+        <a href="#">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
       </div>
     </div>
   </footer>

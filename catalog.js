@@ -16,6 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const chipsWrap = document.getElementById("chips");
   const q = document.getElementById("q");
+    // ===== Read search query from URL (?q=...) and apply it =====
+  const params = new URLSearchParams(window.location.search);
+  const initialQ = (params.get("q") || "").trim();
+
+  if (initialQ && q) {
+    q.value = initialQ;
+    q.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+
   const grid = document.getElementById("grid");
   const countEl = document.getElementById("visibleCount");
 
