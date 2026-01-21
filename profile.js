@@ -1,7 +1,7 @@
-// ====== STORAGE KEYS ======
-const BORROWED_KEY = "borrowedBooks";   // [{id, borrowedAt, dueAt, status:"borrowed"}]
-const HISTORY_KEY  = "returnedHistory"; // [{id, returnedAt}]
-const BOOKS_JSON   = "./books.json";    // כדי להביא title/author/cover
+// ====== STORAGE KEYS (MATCH borrow.js) ======
+const BORROWED_KEY = "bookify_borrowed"; // [{id,title,author,cover,borrowedAt}]
+const HISTORY_KEY  = "bookify_history";  // [{id,title,author,cover,borrowedAt,returnedAt}]
+const BOOKS_JSON   = "./books.json";     // optional enrich
 
 // ====== ELEMENTS ======
 const statBorrowed = document.getElementById("statBorrowed");
@@ -26,7 +26,8 @@ const countHistory = document.getElementById("countHistory");
 // ====== HELPERS ======
 function load(key, fallback) {
   try {
-    return JSON.parse(localStorage.getItem(key)) ?? fallback;
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
   } catch {
     return fallback;
   }
@@ -36,51 +37,49 @@ function save(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-function isOverdue(dueAt) {
-  if (!dueAt) return false;
-  return new Date(dueAt).getTime() < Date.now();
-}
-
 function formatDate(iso) {
   if (!iso) return "";
   const d = new Date(iso);
-  return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+  return d.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
 }
 
 function setActiveTab(which) {
-  const current = which === "current";
-  tabCurrent.classList.toggle("active", current);
-  tabHistory.classList.toggle("active", !current);
+  const isCurrent = which === "current";
+  tabCurrent.classList.toggle("active", isCurrent);
+  tabHistory.classList.toggle("active", !isCurrent);
 
-  currentView.classList.toggle("hidden", !current);
-  historyView.classList.toggle("hidden", current);
+  currentView.classList.toggle("hidden", !isCurrent);
+  historyView.classList.toggle("hidden", isCurrent);
 }
 
-// ====== RENDER ======
+// ====== MAIN ======
 async function initProfile() {
   // load storage
-  let borrowed = load(BORROWED_KEY, []);
-  let history  = load(HISTORY_KEY, []);
+  const borrowed = load(BORROWED_KEY, []);
+  const history  = load(HISTORY_KEY, []);
 
-  // bring books data
+  // try to enrich from books.json (optional)
   const books = await fetch(BOOKS_JSON).then(r => r.json()).catch(() => []);
-  const bookById = new Map(books.map(b => [b.id, b]));
+  const bookById = new Map((books || []).map(b => [Number(b.id), b]));
 
   // stats
-  const overdueCount = borrowed.filter(b => b.status === "borrowed" && isOverdue(b.dueAt)).length;
-  statBorrowed.textContent = borrowed.filter(b => b.status === "borrowed").length;
-  statOverdue.textContent  = overdueCount;
+  statBorrowed.textContent = borrowed.length;
+  statOverdue.textContent  = 0; // no due date in this model
   statReturned.textContent = history.length;
 
-  countCurrent.textContent = borrowed.filter(b => b.status === "borrowed").length;
+  countCurrent.textContent = borrowed.length;
   countHistory.textContent = history.length;
 
-  // lists
+  // render lists
   renderCurrent(borrowed, bookById);
   renderHistory(history, bookById);
 
   // empty states
-  currentEmpty.classList.toggle("hidden", borrowed.filter(b => b.status === "borrowed").length !== 0);
+  currentEmpty.classList.toggle("hidden", borrowed.length !== 0);
   historyEmpty.classList.toggle("hidden", history.length !== 0);
 
   // tabs
@@ -91,17 +90,29 @@ async function initProfile() {
   setActiveTab("current");
 }
 
+function resolveBook(item, bookById) {
+  // priority: books.json -> item itself -> fallback
+  const fromJson = bookById.get(Number(item.id));
+  if (fromJson) return fromJson;
+
+  return {
+    id: item.id,
+    title: item.title || "Unknown Book",
+    author: item.author || "",
+    category: item.category || "",
+    cover: item.cover || "",
+  };
+}
+
 function renderCurrent(borrowed, bookById) {
-  const current = borrowed
-    .filter(x => x.status === "borrowed")
-    .sort((a, b) => new Date(b.borrowedAt) - new Date(a.borrowedAt));
+  const current = [...borrowed].sort(
+    (a, b) => new Date(b.borrowedAt) - new Date(a.borrowedAt)
+  );
 
   currentList.innerHTML = "";
 
   current.forEach(item => {
-    const book = bookById.get(item.id) || { title: "Unknown Book", author: "", cover: "" };
-
-    const overdue = isOverdue(item.dueAt);
+    const book = resolveBook(item, bookById);
 
     const card = document.createElement("div");
     card.className = "book-card";
@@ -112,7 +123,6 @@ function renderCurrent(borrowed, bookById) {
         <p class="book-meta">${book.author ? book.author + " • " : ""}${book.category || ""}</p>
         <div class="badges">
           <span class="badge">Borrowed: ${formatDate(item.borrowedAt)}</span>
-          ${item.dueAt ? `<span class="badge ${overdue ? "overdue" : ""}">Due: ${formatDate(item.dueAt)}</span>` : ""}
         </div>
       </div>
       <div class="actions">
@@ -131,12 +141,14 @@ function renderCurrent(borrowed, bookById) {
 }
 
 function renderHistory(history, bookById) {
-  const sorted = [...history].sort((a, b) => new Date(b.returnedAt) - new Date(a.returnedAt));
+  const sorted = [...history].sort(
+    (a, b) => new Date(b.returnedAt) - new Date(a.returnedAt)
+  );
 
   historyList.innerHTML = "";
 
   sorted.forEach(item => {
-    const book = bookById.get(item.id) || { title: "Unknown Book", author: "", cover: "" };
+    const book = resolveBook(item, bookById);
 
     const card = document.createElement("div");
     card.className = "book-card";
@@ -158,14 +170,26 @@ function renderHistory(history, bookById) {
 }
 
 function handleReturn(bookId) {
-  let borrowed = load(BORROWED_KEY, []);
-  let history  = load(HISTORY_KEY, []);
+  const borrowed = load(BORROWED_KEY, []);
+  const history  = load(HISTORY_KEY, []);
 
-  // remove from borrowed (or mark returned)
-  borrowed = borrowed.filter(x => x.id !== bookId);
+  const idx = borrowed.findIndex(x => Number(x.id) === Number(bookId));
+  if (idx === -1) return;
 
-  // add to history
-  history.unshift({ id: bookId, returnedAt: new Date().toISOString() });
+  const item = borrowed[idx];
+
+  // remove from borrowed
+  borrowed.splice(idx, 1);
+
+  // add to history (keep book fields if exist)
+  history.unshift({
+    id: item.id,
+    title: item.title,
+    author: item.author,
+    cover: item.cover,
+    borrowedAt: item.borrowedAt,
+    returnedAt: new Date().toISOString(),
+  });
 
   save(BORROWED_KEY, borrowed);
   save(HISTORY_KEY, history);
@@ -173,12 +197,5 @@ function handleReturn(bookId) {
   // re-render
   initProfile();
 }
-
-// ====== (optional) seed demo data ======
-// run once from console if you want to test UI quickly:
-// localStorage.setItem("borrowedBooks", JSON.stringify([
-//   {id: 2, borrowedAt: new Date().toISOString(), dueAt: new Date(Date.now()+3*86400000).toISOString(), status:"borrowed"},
-//   {id: 3, borrowedAt: new Date(Date.now()-5*86400000).toISOString(), dueAt: new Date(Date.now()-1*86400000).toISOString(), status:"borrowed"}
-// ]))
 
 initProfile();
