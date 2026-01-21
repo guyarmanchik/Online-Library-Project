@@ -66,3 +66,22 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategory();
   renderHero();
 });
+  // ===== HOME SEARCH -> redirect to catalog with query =====
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("searchInput");
+  const searchStatus = document.getElementById("searchStatus");
+
+  if (searchForm && searchInput) {
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const q = searchInput.value.trim();
+
+      if (!q) {
+        if (searchStatus) searchStatus.textContent = "Type something to search 🙂";
+        searchInput.focus();
+        return;
+      }
+
+      window.location.href = `catalog.html?q=${encodeURIComponent(q)}`;
+    });
+  }

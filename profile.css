@@ -1,47 +1,62 @@
-.mybooks-title{
+/* ===============================
+   My Books / Profile – Theme-ready (supports dark mode)
+   Relies on global vars: --bg, --card, --text, --muted, --border, --shadow
+   =============================== */
+
+.mybooks-title {
   margin: 10px 0 10px;
   padding: 16px;
 }
 
-.mybooks-title h1{
+.mybooks-title h1 {
   margin: 0;
   font-size: 40px;
   font-weight: 800;
   letter-spacing: -0.5px;
   margin-left: 16px;
+  color: var(--text);
 }
 
-.mybooks-title p{
+.mybooks-title p {
   margin: 6px 0 0;
-  color: #7a7a7a;
+  color: var(--muted);
   font-size: 14px;
 }
 
-.profile-area{
+.profile-area {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2px 16px 4px;
 }
 
-.stats{
+/* Optional: if this page doesn't already get bg/text from body */
+body,
+.profile-area {
+  color: var(--text);
+}
+
+/* ===============================
+   Stats
+   =============================== */
+.stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 18px;
 }
 
-.stat-card{
-  background: #fff;
-  border: 1px solid #eee;
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 16px 18px;
   display: flex;
   align-items: center;
   gap: 14px;
-  box-shadow: 0 8px 18px rgba(0,0,0,.04);
+  box-shadow: var(--shadow);
 }
 
-.icon{
+.icon {
   width: 48px;
   height: 48px;
   border-radius: 14px;
@@ -50,40 +65,53 @@
   font-size: 20px;
 }
 
-.icon-blue{ background: #eaf1ff; }
-.icon-yellow{ background: #fff2d6; }
-.icon-green{ background: #e7fbf1; }
+/* These stay as accent tints */
+.icon-blue {
+  background: #eaf1ff;
+}
 
-.stat-number{
+.icon-yellow {
+  background: #fff2d6;
+}
+
+.icon-green {
+  background: #e7fbf1;
+}
+
+.stat-number {
   font-size: 26px;
   font-weight: 800;
   line-height: 1;
+  color: var(--text);
 }
 
-.stat-label{
-  color: #666;
+.stat-label {
+  color: var(--muted);
   font-size: 14px;
   margin-top: 6px;
 }
 
-.panel{
-  background: #fff;
-  border: 1px solid #eee;
+/* ===============================
+   Panel + Tabs
+   =============================== */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 10px 22px rgba(0,0,0,.04);
+  box-shadow: var(--shadow);
 }
 
-.tabs{
+.tabs {
   display: flex;
   gap: 10px;
   padding: 14px 14px 0;
 }
 
-.tab{
-  border: 1px solid #e8e8e8;
-  background: #f7f7f7;
-  color: #333;
+.tab {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 75%, var(--bg) 25%);
+  color: var(--text);
   border-radius: 999px;
   padding: 10px 14px;
   cursor: pointer;
@@ -93,80 +121,87 @@
   gap: 8px;
 }
 
-.tab.active{
-  background: #fff;
-  border-color: #dcdcdc;
+.tab.active {
+  background: var(--card);
+  border-color: var(--border);
 }
 
-.content{
+.content {
   padding: 18px 14px 14px;
 }
 
-.list{
+/* ===============================
+   List + Book Cards
+   =============================== */
+.list {
   display: grid;
   gap: 12px;
 }
 
-.book-card{
+.book-card {
   display: grid;
   grid-template-columns: 64px 1fr auto;
   gap: 12px;
   align-items: center;
   padding: 12px;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
   border-radius: 14px;
-  background: #fff;
+  background: var(--card);
 }
 
-.cover{
+.cover {
   width: 64px;
   height: 88px;
   border-radius: 10px;
   object-fit: cover;
-  background: #f1f1f1;
-  border: 1px solid #eee;
+  background: color-mix(in srgb, var(--card) 70%, var(--bg) 30%);
+  border: 1px solid var(--border);
 }
 
-.book-title{
+.book-title {
   font-weight: 800;
   margin: 0 0 4px;
+  color: var(--text);
 }
 
-.book-meta{
-  color: #666;
+.book-meta {
+  color: var(--muted);
   font-size: 14px;
   margin: 0 0 8px;
 }
 
-.badges{
+.badges {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.badge{
+.badge {
   font-size: 12px;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid #eee;
-  background: #fafafa;
-  color: #444;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 80%, var(--bg) 20%);
+  color: var(--text);
 }
 
-.badge.overdue{
+.badge.overdue {
   background: #fff2f2;
   border-color: #ffd6d6;
   color: #a40000;
 }
 
-.actions{
+/* ===============================
+   Actions / Buttons
+   =============================== */
+.actions {
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: flex-end;
 }
 
-.small-btn{
+.small-btn {
   border: 0;
   cursor: pointer;
   border-radius: 10px;
@@ -174,40 +209,70 @@
   font-weight: 800;
 }
 
-.btn-return{
-  background: #111;
+/* Primary action button stays bold */
+/* Primary action – ORANGE */
+/* Primary action – Brand Orange */
+.btn-return {
+  background: var(--blue2);
   color: #fff;
+  box-shadow: 0 10px 22px rgba(228, 106, 16, 0.35);
 }
 
-.btn-details{
-  background: #f2f2f2;
-  color: #111;
+.btn-return:hover {
+  filter: brightness(0.95);
 }
 
-.empty{
+.btn-return:active {
+  transform: translateY(1px);
+}
+
+.actions{
+  align-items: stretch; /* במקום flex-end */
+}
+
+.actions .small-btn{
+  width: 100%;
+  text-align: center;
+}
+
+
+/* Secondary action adapts to theme */
+.btn-details {
+  background: color-mix(in srgb, var(--card) 75%, var(--bg) 25%);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-details:hover {
+  filter: brightness(0.98);
+}
+
+.empty {
   text-align: center;
   padding: 46px 18px;
-  border: 1px dashed #e6e6e6;
+  border: 1px dashed var(--border);
   border-radius: 16px;
+  background: var(--card);
 }
 
-.empty-icon{
+.empty-icon {
   font-size: 34px;
   opacity: .7;
   margin-bottom: 10px;
 }
 
-.empty h3{
+.empty h3 {
   margin: 8px 0 6px;
   font-size: 20px;
+  color: var(--text);
 }
 
-.empty p{
+.empty p {
   margin: 0 0 16px;
-  color: #666;
+  color: var(--muted);
 }
 
-.btn{
+.btn {
   display: inline-block;
   color: #fff;
   padding: 12px 16px;
@@ -216,35 +281,51 @@
   font-weight: 800;
 }
 
-.hidden{ display:none; }
-
-@media (max-width: 900px){
-  .stats{ grid-template-columns: 1fr; }
-  .book-card{ grid-template-columns: 64px 1fr; }
-  .actions{ grid-column: 1 / -1; flex-direction: row; justify-content: flex-end; }
+.hidden {
+  display: none;
 }
 
-.profile-card{
+@media (max-width: 900px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .book-card {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+/* ===============================
+   Profile Card (Top)
+   =============================== */
+.profile-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 22px 26px;
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 26px;
-  box-shadow: 0 10px 24px rgba(0,0,0,.05);
+  box-shadow: var(--shadow);
   margin-bottom: 24px;
-  margin-left: 16px;
-  margin-right: 16px;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding: 22px 26px;
 }
 
-.profile-left{
+.profile-left {
   display: flex;
   align-items: center;
   gap: 18px;
 }
 
-.avatar{
+.avatar {
   width: 76px;
   height: 76px;
   border-radius: 18px;
@@ -257,29 +338,30 @@
   font-weight: 800;
 }
 
-.user-info h2{
+.user-info h2 {
   margin: 0;
   font-size: 26px;
   font-weight: 800;
+  color: var(--text);
 }
 
-.user-info p{
+.user-info p {
   margin: 4px 0 6px;
-  color: #777;
+  color: var(--muted);
   font-size: 14px;
 }
 
-.joined{
+.joined {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #777;
+  color: var(--muted);
   font-size: 13px;
 }
 
-.edit-btn{
-  background: #fff;
-  border: 1px solid #e5e5e5;
+.edit-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
   padding: 10px 16px;
   border-radius: 999px;
   cursor: pointer;
@@ -287,28 +369,18 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  color: var(--text);
 }
 
-.edit-btn:hover{
-  background: #f7f7f7;
-}
-/* =========================
-   RESPONSIVE – Mobile
-   ========================= */
-@media (max-width: 480px) {
-
+.edit-btn:hover {
+  background: color-mix(in srgb, var(--card) 75%, var(--bg) 25%);
 }
 
 /* =========================
-   RESPONSIVE – Tablet
+   RESPONSIVE – placeholders
    ========================= */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (max-width: 480px) {}
 
-}
+@media (min-width: 481px) and (max-width: 768px) {}
 
-/* =========================
-   RESPONSIVE – Desktop
-   ========================= */
-@media (min-width: 769px) and (max-width: 1024px) {
-
-}
+@media (min-width: 769px) and (max-width: 1024px) {}
