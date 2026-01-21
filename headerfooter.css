@@ -386,3 +386,66 @@ footer a:hover {
     max-width: none;
   }
 }
+/* ===== Footer accordions (EXPLORE + ACCOUNT) ===== */
+.foot-acc { border: 0; }
+
+.foot-acc__sum {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 9px 0;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  color: #f3d2b3; /* same as footer h4 */
+}
+
+.foot-acc__sum::-webkit-details-marker { display: none; }
+
+.foot-acc__sum::after {
+  content: "☰";         /* hamburger */
+  font-size: 16px;
+  opacity: .9;
+}
+
+.foot-acc[open] .foot-acc__sum::after {
+  content: "✕";         /* close */
+}
+
+.foot-acc__panel a {
+  display: block;
+  padding: 9px 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 650;
+}
+
+.foot-acc__panel a:hover { color: rgba(255, 255, 255, 0.9); }
+
+/* Desktop: show them as normal columns (open, no icon) */
+@media (min-width: 1025px) {
+  .foot-acc__sum { cursor: default; }
+  .foot-acc__sum::after { content: ""; }
+  .foot-acc { padding-top: 0; margin-top: 0; }
+  .foot-acc__panel { padding-top: 0; }
+}
+
+/* Tablet + phone: accordion styling */
+@media (max-width: 1024px) {
+  .foot-acc {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+}
+/* ===== Desktop: no hamburger, always open, not clickable ===== */
+@media (min-width: 1025px) {
+  .foot-acc__sum::after { content: ""; }   /* hide ☰ */
+  .foot-acc__sum { pointer-events: none; } /* disable click on desktop */
+  .foot-acc[open] .foot-acc__sum::after { content: ""; } /* hide ✕ too */
+}
+
