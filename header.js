@@ -46,3 +46,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeMenu();
   });
 });
+// ===== Footer accordions: desktop always open, mobile collapsible =====
+document.addEventListener("DOMContentLoaded", () => {
+  const mqDesktop = window.matchMedia("(min-width: 1025px)");
+  const acc = Array.from(document.querySelectorAll("details.foot-acc"));
+
+  if (acc.length === 0) return;
+
+  function syncFooterAccordions() {
+    if (mqDesktop.matches) {
+      // Desktop: always open
+      acc.forEach(d => (d.open = true));
+    } else {
+      // Mobile/Tablet: allow accordion (start closed if you want)
+      acc.forEach(d => (d.open = false));
+    }
+  }
+
+  // run now + on resize changes
+  syncFooterAccordions();
+  mqDesktop.addEventListener("change", syncFooterAccordions);
+});
+

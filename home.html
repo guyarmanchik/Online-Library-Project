@@ -13,27 +13,27 @@
 
     <!-- ===== HEADER ===== -->
     <header class="bf-header">
-  <div class="bf-header__inner container">
-    <a class="bf-brand" href="./home.html">
-      <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo">
-    </a>
+        <div class="bf-header__inner container">
+            <a class="bf-brand" href="./home.html">
+                <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo">
+            </a>
 
-    <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
+            <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
 
-    <nav aria-label="Primary" class="bf-nav">
-      <a class="bf-nav__link" href="home.html">Home</a>
-      <a class="bf-nav__link" href="catalog.html">Browse</a>
-      <a class="bf-nav__link" href="about.html">About</a>
-      <a class="bf-nav__link" href="contact.html">Contact Us</a>
-    </nav>
+            <nav aria-label="Primary" class="bf-nav">
+                <a class="bf-nav__link" href="home.html">Home</a>
+                <a class="bf-nav__link" href="catalog.html">Browse</a>
+                <a class="bf-nav__link" href="about.html">About</a>
+                <a class="bf-nav__link" href="contact.html">Contact Us</a>
+            </nav>
 
-    <div class="bf-auth">
-      <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
-      <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
-      <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
-    </div>
-  </div>
-</header>
+            <div class="bf-auth">
+                <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
+                <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
+            </div>
+        </div>
+    </header>
 
 
 
@@ -225,20 +225,24 @@
                 </p>
             </div>
 
-            <div>
-                <h4>EXPLORE</h4>
-                <a href="about.html">About Us</a>
-                <a href="catalog.html">Browse Catalog</a>
-                <a href="catalog.html">Fiction</a>
-                <a href="catalog.html">Non-Fiction</a>
-            </div>
+            <details class="foot-acc" open>
+                <summary class="foot-acc__sum">EXPLORE</summary>
+                <div class="foot-acc__panel">
+                    <a href="about.html">About Us</a>
+                    <a href="catalog.html">Browse Catalog</a>
+                    <a href="catalog.html">Fiction</a>
+                    <a href="catalog.html">Non-Fiction</a>
+                </div>
+            </details>
 
-            <div>
-                <h4>ACCOUNT</h4>
-                <a href="profile.html">My Profile</a>
-                <a href="profile.html">Borrowed Books</a>
-                <a href="profile.html">Reading History</a>
-            </div>
+            <details class="foot-acc" open>
+                <summary class="foot-acc__sum">ACCOUNT</summary>
+                <div class="foot-acc__panel">
+                    <a href="profile.html">My Profile</a>
+                    <a href="profile.html">Borrowed Books</a>
+                    <a href="profile.html">Reading History</a>
+                </div>
+            </details>
 
             <div>
                 <h4>LIBRARY HOURS</h4>

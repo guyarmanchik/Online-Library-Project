@@ -241,52 +241,55 @@
     </section>
   </main>
 
-  <footer>
-    <div class="wrap" id="foot-grid">
-      <div>
-        <div id="foot-brand">
-          <span id="foot-logo"><img src="images/NewLogo2.png" alt="Bookify logo" /></span>
-          <span id="foot-name">Bookify</span>
+    <footer>
+        <div class="wrap" id="foot-grid">
+            <div>
+                <div id="foot-brand">
+                    <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
+                    <span id="foot-name">Bookify</span>
+                </div>
+                <p id="tag">
+                    Your gateway to endless knowledge.<br />
+                    Discover, borrow, and explore our curated collection of literary treasures.
+                </p>
+            </div>
+
+            <details class="foot-acc" open>
+                <summary class="foot-acc__sum">EXPLORE</summary>
+                <div class="foot-acc__panel">
+                    <a href="about.html">About Us</a>
+                    <a href="catalog.html">Browse Catalog</a>
+                    <a href="catalog.html">Fiction</a>
+                    <a href="catalog.html">Non-Fiction</a>
+                </div>
+            </details>
+
+            <details class="foot-acc" open>
+                <summary class="foot-acc__sum">ACCOUNT</summary>
+                <div class="foot-acc__panel">
+                    <a href="profile.html">My Profile</a>
+                    <a href="profile.html">Borrowed Books</a>
+                    <a href="profile.html">Reading History</a>
+                </div>
+            </details>
+
+            <div>
+                <h4>LIBRARY HOURS</h4>
+                <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
+                <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
+                <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
+            </div>
         </div>
-        <p id="tag">
-          Your gateway to endless knowledge.<br />
-          Discover, borrow, and explore our curated collection of literary treasures.
-        </p>
-      </div>
 
-      <div>
-        <h4>EXPLORE</h4>
-        <a href="about.html">About Us</a>
-        <a href="catalog.html">Browse Catalog</a>
-        <a href="catalog.html">Fiction</a>
-        <a href="catalog.html">Non-Fiction</a>
-      </div>
-
-      <div>
-        <h4>ACCOUNT</h4>
-        <a href="profile.html">My Profile</a>
-        <a href="profile.html">Borrowed Books</a>
-        <a href="profile.html">Reading History</a>
-      </div>
-
-      <div>
-        <h4>LIBRARY HOURS</h4>
-        <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
-        <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
-        <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
-      </div>
-    </div>
-
-    <div class="wrap" id="bottom">
-      <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
-      <div id="links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="contact.html">Contact Us</a>
-      </div>
-    </div>
-  </footer>
-
+        <div class="wrap" id="bottom">
+            <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
+            <div id="links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
   <!-- Footer year only -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
