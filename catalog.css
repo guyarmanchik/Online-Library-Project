@@ -1,22 +1,24 @@
 /* ===============================
-   Catalog Page – Bookify
+   Catalog Page – General Page Styles
+   Controls background color and default text color
    =============================== */
-
 .catalog-page {
-  /* Catalog-only palette (scoped so it won’t affect header/footer) */
-  --orange: #e67e22;
-  --orange-light: #fdebd0;
-  --orange-soft: #fff4e6;
-
-  background: var(--bg);
-  color: var(--text);
+  background: #f6ede6;
+  color: #1f2937;
 }
 
-/* Layout */
+/* ===============================
+   Main Catalog Wrapper
+   Adds spacing around the catalog content
+   =============================== */
 .catalog-main {
   padding: 40px 0 60px;
 }
 
+/* ===============================
+   Main Layout
+   Two-column layout: filters (left) + books grid (right)
+   =============================== */
 .catalog-layout {
   display: grid;
   grid-template-columns: 260px 1fr;
@@ -24,12 +26,12 @@
 }
 
 /* ===============================
-   Filters (LEFT)
+   Filters Panel (Left Side)
+   Container for search and genre filters
    =============================== */
-
 .catalog-filters {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 20px;
   display: flex;
@@ -37,77 +39,74 @@
   gap: 18px;
 }
 
+/* Section labels like SEARCH / GENRE */
 .catalog-label {
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--muted);
+  color: #6b7280;
 }
 
-/* Search */
+/* ===============================
+   Search Input Area
+   =============================== */
 .catalog-search {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* Search input field */
 .catalog-input {
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid var(--border);
+  border: 1px solid #e5e7eb;
   font-size: 14px;
   outline: none;
-  background: rgba(255,255,255,0.85);
-  color: var(--text);
+  background: #ffffff;
+  color: #111827;
 }
 
-.catalog-input::placeholder {
-  color: var(--muted);
-  opacity: 0.85;
-}
-
+/* Highlight input when focused */
 .catalog-input:focus {
-  border-color: var(--orange);
+  border-color: #e67e22;
 }
 
+/* Helper text under search input */
 .catalog-hint {
   font-size: 12px;
-  color: var(--muted);
+  color: #6b7280;
 }
 
-/* Genre chips */
+/* ===============================
+   Genre Filter Chips
+   =============================== */
 .catalog-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
+/* Single genre button */
 .chip {
   padding: 8px 14px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--card);
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
   font-size: 14px;
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.chip:hover {
-  border-color: var(--orange);
-  color: var(--orange);
-}
-
+/* Active genre state */
 .chip.active {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: #fff;
+  background: #e67e22;
+  border-color: #e67e22;
+  color: #ffffff;
 }
 
 /* ===============================
-   Content (RIGHT)
+   Top Section Above Books Grid
+   Shows number of results
    =============================== */
-
 .catalog-topline {
   margin-bottom: 20px;
 }
@@ -117,75 +116,84 @@
   font-weight: 600;
 }
 
-/* Books grid */
+/* ===============================
+   Books Grid Layout
+   Displays book cards in columns
+   =============================== */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 24px;
 }
 
 /* ===============================
    Book Card
+   Single book container
    =============================== */
-
 .book-card {
-  background: var(--card);
+  background: #ffffff;
   border-radius: 18px;
   padding: 16px;
-  border: 1px solid var(--border);
+  border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Hover effect – subtle scale and shadow */
 .book-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transform: scale(1.02);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
 }
 
-/* Cover */
+/* ===============================
+   Book Cover Image
+   =============================== */
 .book-cover {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 260px;
   border-radius: 14px;
   overflow: hidden;
-  background: var(--orange-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #fff4e6;
 }
 
+/* Cover image fills container */
 .book-cover img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
-/* Text */
+/* ===============================
+   Book Text Content
+   =============================== */
 .book-title {
   font-size: 15px;
   font-weight: 700;
   margin-top: 6px;
   line-height: 1.3;
-  color: var(--text);
+  color: #111827;
 }
 
 .book-author {
   font-size: 13px;
-  color: var(--muted);
+  color: #6b7280;
   margin: 0;
   line-height: 1.3;
 }
 
-/* Meta */
+/* ===============================
+   Book Meta Row (Rating + Status)
+   =============================== */
 .book-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-top: auto;
 }
 
+/* Rating (star + number) */
 .book-rating {
   font-size: 16px;
   font-weight: 600;
@@ -195,47 +203,50 @@
 }
 
 .book-rating .star {
-  color: var(--orange);
-  font-size: 18px;   /* שחק כאן: 18–22 נראה מצוין */
-  line-height: 1;
-}
-
-/* Badge */
-.book-badge {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: var(--orange-light);
-  color: var(--orange);
-}
-
-.book-badge--off {
-  background: rgba(0,0,0,0.06);
-  color: var(--muted);
+  color: #e67e22;
+  font-size: 18px;
 }
 
 /* ===============================
-   Error state
+   Availability Badge
    =============================== */
+.book-badge {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid #86efac;
+  background: #dcfce7;
+  color: #166534;
+}
 
+/* Unavailable state */
+.book-badge--off {
+  border: 1px solid #fdba74;
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+/* ===============================
+   Empty / Error State
+   Displayed when no books match filter
+   =============================== */
 .catalog-error {
   grid-column: 1 / -1;
-  background: var(--card);
-  border: 1px dashed var(--border);
+  background: #ffffff;
+  border: 1px dashed #e5e7eb;
   padding: 24px;
   border-radius: 16px;
   text-align: center;
-  color: var(--muted);
+  color: #6b7280;
 }
 
 /* ===============================
-   Responsive
+   Responsive Design
    =============================== */
-
 @media (max-width: 1200px) {
   .books-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -245,13 +256,13 @@
   }
 
   .books-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 520px) {
   .books-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
 
@@ -259,69 +270,15 @@
     padding: 12px;
   }
 
-  .book-title { font-size: 14px; }
-  .book-author { font-size: 12px; }
-}
-
-
-/* ===== DARK MODE (Catalog page) ===== */
-html[data-theme="dark"] .catalog-input,
-body.dark .catalog-input {
-  background: rgba(255,255,255,0.06);
-}
-
-html[data-theme="dark"] .book-card:hover,
-body.dark .book-card:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-
-html[data-theme="dark"] .book-badge--off,
-body.dark .book-badge--off {
-  background: rgba(255,255,255,0.08);
-}
-
-html[data-theme="dark"] .chip,
-body.dark .chip {
-  background: rgba(255,255,255,0.06);
-}
-
-html[data-theme="dark"] .chip:hover,
-body.dark .chip:hover {
-  border-color: var(--orange);
-  color: var(--orange);
-}
-/* ===============================
-   Responsive (Required)
-   Mobile / Tablet / Desktop
-   =============================== */
-
-/* Desktop (769–1024) */
-@media (max-width: 1024px) {
-  .books-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Tablet (481–768) */
-@media (max-width: 768px) {
-  .catalog-layout {
-    grid-template-columns: 1fr;
+  .book-cover {
+    height: 220px;
   }
 
-  .books-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile (עד 480) */
-@media (max-width: 480px) {
-  .books-grid {
-    grid-template-columns: repeat(2, 1fr); /* << זה מה שרצית */
-    gap: 16px;
+  .book-title {
+    font-size: 14px;
   }
 
-  .book-card { padding: 12px; }
-  .book-title { font-size: 14px; }
-  .book-author { font-size: 12px; }
+  .book-author {
+    font-size: 12px;
+  }
 }
-
