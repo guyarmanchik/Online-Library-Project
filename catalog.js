@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ===== Empty state message =====
+  const EMPTY_CATEGORY_MESSAGE = `
+    <div class="catalog-error">
+      <h3>Nothing here yet 📚</h3>
+      <p>
+        We don’t have any books in this category at the moment.<br>
+        New titles are being added regularly — stay tuned!
+      </p>
+    </div>
+  `;
+
   // Footer year
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -9,16 +20,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const countEl = document.getElementById("visibleCount");
 
   let activeGenre = "All";
+  let allBooks = []; 
 
   function mapCategory(raw) {
-    const c = (raw || "").trim();
-    if (c.toLowerCase() === "self-improvement") return "Self-Help";
-    return c || "Fiction";
+    const c = (raw || "").trim().toLowerCase();
+
+    if (c === "self-improvement" || c === "self-help") return "Self-Help";
+    if (c === "fantasy") return "Fantasy";
+    if (c === "young adult") return "Young Adult";
+    if (c === "mystery") return "Mystery";
+    if (c === "romance") return "Romance";
+
+    return "Fiction";
   }
 
   function normalizeCoverPath(path) {
     if (!path) return "images/placeholder-cover.png";
-    if (path.startsWith("/images/")) return path.slice(1); // "/images/x" -> "images/x"
+    if (path.startsWith("/images/")) return path.slice(1);
     return path;
   }
 
@@ -48,17 +66,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return `
       <article class="book-card"
         data-id="${book.id}"
-        data-title="${escapeHtml(title)}"
-        data-author="${escapeHtml(author)}"
-        data-genre="${escapeHtml(genre)}">
+        role="button"
+        tabindex="0"
+        aria-label="Open details for ${escapeHtml(title)}"
+      >
         <div class="book-cover">
           <img src="${cover}" alt="${escapeHtml(title)} cover"
+               loading="lazy"
+               decoding="async"
                onerror="this.src='images/placeholder-cover.png'">
         </div>
         <h3 class="book-title">${escapeHtml(title)}</h3>
         <p class="book-author">${escapeHtml(author)}</p>
         <div class="book-meta">
-          <div class="book-rating"><span class="star">★</span><span>${rating}</span></div>
+          <div class="book-rating">
+            <span class="star">★</span><span>${rating}</span>
+          </div>
           <span class="book-badge ${available ? "" : "book-badge--off"}">
             ${available ? "Available" : "Unavailable"}
           </span>
@@ -67,44 +90,59 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  function applyFilters() {
+  function getFilteredBooks() {
     const term = (q?.value || "").toLowerCase().trim();
-    const cards = Array.from(document.querySelectorAll(".book-card"));
-    let visible = 0;
 
-    cards.forEach((card) => {
-      const genre = card.dataset.genre || "";
-      const title = (card.dataset.title || "").toLowerCase();
-      const author = (card.dataset.author || "").toLowerCase();
+    return allBooks.filter((book) => {
+      const genre = mapCategory(book.category);
+      const title = (book.title || "").toLowerCase();
+      const author = (book.author || "").toLowerCase();
 
       const matchGenre = activeGenre === "All" || genre === activeGenre;
       const matchSearch = !term || title.includes(term) || author.includes(term);
 
-      const show = matchGenre && matchSearch;
-      card.style.display = show ? "" : "none";
-      if (show) visible++;
+      return matchGenre && matchSearch;
     });
-
-    if (countEl) countEl.textContent = String(visible);
   }
 
   function renderBooks(list) {
     if (!grid) return;
+
+    if (countEl) countEl.textContent = String(list.length);
+
+    
+    if (list.length === 0) {
+      grid.innerHTML = EMPTY_CATEGORY_MESSAGE;
+      return;
+    }
+
     grid.innerHTML = list.map(createCard).join("");
 
-    // ✅ CLICK ON CARD -> go to book page by id
+    
     grid.querySelectorAll(".book-card").forEach((card) => {
-      card.addEventListener("click", () => {
+      const go = () => {
         const id = card.dataset.id;
         window.location.href = `borrow.html?id=${id}`;
+      };
+
+      card.addEventListener("click", go);
+
+      // ✅ keyboard support (Enter/Space)
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          go();
+        }
       });
     });
-
-    applyFilters();
   }
 
+  function applyFilters() {
+    const filtered = getFilteredBooks();
+    renderBooks(filtered);
+  }
 
-  // Chips click (event delegation)
+  
   if (chipsWrap) {
     chipsWrap.addEventListener("click", (e) => {
       const btn = e.target.closest(".chip");
@@ -118,10 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Search
+  
   if (q) q.addEventListener("input", applyFilters);
 
-  // Load books.json
+  
   fetch("books.json", { cache: "no-store" })
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status} (${res.statusText})`);
@@ -129,7 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then((data) => {
       if (!Array.isArray(data)) throw new Error("books.json is not an array");
-      renderBooks(data);
+      allBooks = data;
+      applyFilters();      
     })
     .catch((err) => {
       console.error("books.json load error:", err);
@@ -148,4 +187,3 @@ document.addEventListener("DOMContentLoaded", () => {
       if (countEl) countEl.textContent = "0";
     });
 });
-
