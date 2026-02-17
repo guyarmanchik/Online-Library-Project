@@ -40,10 +40,11 @@ function save(key, value) {
 function formatDate(iso) {
   if (!iso) return "";
   const d = new Date(iso);
-  return d.toLocaleDateString(undefined, {
+  return d.toLocaleDateString("en-US-u-nu-latn", {
     year: "numeric",
     month: "short",
     day: "2-digit",
+    timeZone: "Asia/Jerusalem",
   });
 }
 
