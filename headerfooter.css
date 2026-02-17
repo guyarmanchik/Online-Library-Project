@@ -81,7 +81,7 @@ img {
 .bf-header__inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 14px 20px;
+  padding: 10px 20px;
 
   display: flex;
   align-items: center;
@@ -100,9 +100,10 @@ img {
 }
 
 .bf-logo {
-  width: 64px;
-  height: 64px;
+  width: 88px;
+  height: 88px;
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 /* NAV (Desktop: center) */
@@ -240,8 +241,9 @@ img {
   }
 
   .bf-logo {
-    width: 46px;
-    height: 46px;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
   }
 
   /* hide top dark button, show inside menu */

@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1) STORAGE KEYS (MUST MATCH profile.js)
   // =========================
   const BORROWED_KEY = "bookify_borrowed"; // [{id,title,author,cover,category,borrowedAt}]
-  const HISTORY_KEY  = "bookify_history";  // [{id,title,author,cover,borrowedAt,returnedAt}]
-  const RECENT_KEY   = "recentBooks";      // [id,id,id] (נשאר כמו אצלך)
+  const HISTORY_KEY = "bookify_history";  // [{id,title,author,cover,borrowedAt,returnedAt}]
+  const RECENT_KEY = "recentBooks";      // [id,id,id] (נשאר כמו אצלך)
 
   // =========================
   // 2) HELPERS: load/save
@@ -54,23 +54,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function returnBook(book) {
+    // load borrowed + history
+    const borrowed = load(BORROWED_KEY, []);
+    const history = load(HISTORY_KEY, []);
+
+    // find the borrowed record (so we keep borrowedAt)
+    const idx = borrowed.findIndex(x => Number(x.id) === Number(book.id));
+    if (idx === -1) return;
+
+    const item = borrowed[idx];
+
     // remove from borrowed
-    let borrowed = load(BORROWED_KEY, []);
-    borrowed = borrowed.filter(x => Number(x.id) !== Number(book.id));
+    borrowed.splice(idx, 1);
     save(BORROWED_KEY, borrowed);
 
-    // add to history
-    const history = load(HISTORY_KEY, []);
+    // add to history (KEEP borrowedAt)
     history.unshift({
-      id: Number(book.id),
-      title: book.title || "",
-      author: book.author || "",
-      cover: normalizeCover(book.cover),
-      borrowedAt: new Date().toISOString(), // אם תרצה לשמור borrowedAt המקורי – אפשר לשדרג
+      id: Number(item.id),
+      title: item.title || book.title || "",
+      author: item.author || book.author || "",
+      cover: item.cover || normalizeCover(book.cover),
+      category: item.category || book.category || "",
+      borrowedAt: item.borrowedAt,
       returnedAt: new Date().toISOString(),
     });
+
     save(HISTORY_KEY, history);
   }
+
 
   // =========================
   // 4) RECENTLY VIEWED
@@ -121,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 6) ELEMENTS
   // =========================
   const statusEl = document.getElementById("bookStatus");
-  const hintEl   = document.getElementById("bookAvailabilityText");
+  const hintEl = document.getElementById("bookAvailabilityText");
   const borrowBtn = document.getElementById("borrowBtn");
   const returnBtn = document.getElementById("returnBtn");
   const msgEl = document.getElementById("systemMessage");
@@ -253,11 +264,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const x = ((e.clientX - rect.left) / rect.width) * 100;
           const y = ((e.clientY - rect.top) / rect.height) * 100;
           coverImg.style.transformOrigin = `${x}% ${y}%`;
-          coverWrap.classList.add("zoom");
         });
 
         coverWrap.addEventListener("mouseleave", () => {
-          coverWrap.classList.remove("zoom");
           coverImg.style.transformOrigin = "50% 50%";
         });
       }

@@ -637,3 +637,18 @@ body.dark .bf-btn--addToList {
     border-radius: 12px;
   }
 }
+/* ===== Search icon clean style ===== */
+.search-icon {
+  width: 18px;
+  height: 18px;
+  stroke: #8a3a16;      /* צבע ברור */
+  stroke-width: 2;
+  fill: none;
+  display: block;
+}
+
+/* dark mode */
+body.dark .search-icon,
+html[data-theme="dark"] .search-icon {
+  stroke: #ffffffcc;
+}
