@@ -29,7 +29,6 @@
   padding: 2px 16px 4px;
 }
 
-/* Optional: if this page doesn't already get bg/text from body */
 body,
 .profile-area {
   color: var(--text);
