@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // 1) STORAGE KEYS (MUST MATCH profile.js)
-  // =========================
-  const BORROWED_KEY = "bookify_borrowed"; // [{id,title,author,cover,category,borrowedAt}]
-  const HISTORY_KEY = "bookify_history";  // [{id,title,author,cover,borrowedAt,returnedAt}]
-  const RECENT_KEY = "recentBooks";      // [id,id,id] (נשאר כמו אצלך)
+  const STORAGE_KEYS = {
+    borrowed: "bookify_borrowed",
+    history: "bookify_history",
+    recent: "recentBooks",
+  };
 
-  // =========================
-  // 2) HELPERS: load/save
-  // =========================
-  function load(key, fallback) {
+  function readStorage(key, fallback) {
     try {
       return JSON.parse(localStorage.getItem(key)) ?? fallback;
     } catch {
@@ -17,138 +13,132 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function save(key, value) {
+  function writeStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  function normalizeCover(path) {
+  function normalizeCoverPath(path) {
     if (!path) return "images/placeholder-cover.png";
     if (path.startsWith("/images/")) return path.slice(1);
     return path;
   }
 
-  // =========================
-  // 3) BORROW STATE (based on localStorage)
-  // =========================
-  function isBorrowed(id) {
-    const borrowed = load(BORROWED_KEY, []);
-    return borrowed.some(x => Number(x.id) === Number(id));
+  function isBookBorrowed(bookId) {
+    const borrowed = readStorage(STORAGE_KEYS.borrowed, []);
+    return borrowed.some((item) => Number(item.id) === Number(bookId));
   }
 
-  function borrowBook(book) {
-    let borrowed = load(BORROWED_KEY, []);
-
-    // remove existing record for this id (avoid duplicates)
-    borrowed = borrowed.filter(x => Number(x.id) !== Number(book.id));
+  function addBorrowedRecord(book) {
+    let borrowed = readStorage(STORAGE_KEYS.borrowed, []);
+    borrowed = borrowed.filter((item) => Number(item.id) !== Number(book.id));
 
     borrowed.unshift({
       id: Number(book.id),
       title: book.title || "",
       author: book.author || "",
-      cover: normalizeCover(book.cover),
+      cover: normalizeCoverPath(book.cover),
       category: book.category || "",
       borrowedAt: new Date().toISOString(),
     });
 
-    save(BORROWED_KEY, borrowed);
+    writeStorage(STORAGE_KEYS.borrowed, borrowed);
   }
 
-  function returnBook(book) {
-    // load borrowed + history
-    const borrowed = load(BORROWED_KEY, []);
-    const history = load(HISTORY_KEY, []);
+  function moveBorrowedToHistory(book) {
+    const borrowed = readStorage(STORAGE_KEYS.borrowed, []);
+    const history = readStorage(STORAGE_KEYS.history, []);
 
-    // find the borrowed record (so we keep borrowedAt)
-    const idx = borrowed.findIndex(x => Number(x.id) === Number(book.id));
-    if (idx === -1) return;
+    const index = borrowed.findIndex((item) => Number(item.id) === Number(book.id));
+    if (index === -1) return;
 
-    const item = borrowed[idx];
+    const borrowedItem = borrowed[index];
 
-    // remove from borrowed
-    borrowed.splice(idx, 1);
-    save(BORROWED_KEY, borrowed);
+    borrowed.splice(index, 1);
+    writeStorage(STORAGE_KEYS.borrowed, borrowed);
 
-    // add to history (KEEP borrowedAt)
     history.unshift({
-      id: Number(item.id),
-      title: item.title || book.title || "",
-      author: item.author || book.author || "",
-      cover: item.cover || normalizeCover(book.cover),
-      category: item.category || book.category || "",
-      borrowedAt: item.borrowedAt,
+      id: Number(borrowedItem.id),
+      title: borrowedItem.title || book.title || "",
+      author: borrowedItem.author || book.author || "",
+      cover: borrowedItem.cover || normalizeCoverPath(book.cover),
+      category: borrowedItem.category || book.category || "",
+      borrowedAt: borrowedItem.borrowedAt,
       returnedAt: new Date().toISOString(),
     });
 
-    save(HISTORY_KEY, history);
+    writeStorage(STORAGE_KEYS.history, history);
   }
 
-
-  // =========================
-  // 4) RECENTLY VIEWED
-  // =========================
-  function addRecent(id) {
-    let recent = load(RECENT_KEY, []);
-    recent = recent.filter(x => Number(x) !== Number(id));
-    recent.unshift(Number(id));
+  function addToRecentlyViewed(bookId) {
+    let recent = readStorage(STORAGE_KEYS.recent, []);
+    recent = recent.filter((id) => Number(id) !== Number(bookId));
+    recent.unshift(Number(bookId));
     recent = recent.slice(0, 3);
-    save(RECENT_KEY, recent);
+    writeStorage(STORAGE_KEYS.recent, recent);
   }
 
   function renderRecentlyViewed(books) {
-    const historyList = document.getElementById("historyList");
-    if (!historyList) return;
+    const listEl = document.getElementById("historyList");
+    if (!listEl) return;
 
-    const recentIds = load(RECENT_KEY, []);
+    const recentIds = readStorage(STORAGE_KEYS.recent, []);
     const recentBooks = recentIds
-      .map(id => books.find(b => Number(b.id) === Number(id)))
+      .map((id) => books.find((b) => Number(b.id) === Number(id)))
       .filter(Boolean);
 
     if (recentBooks.length === 0) {
-      historyList.innerHTML = `<li class="history__empty">No items yet. Browse books to build history.</li>`;
+      listEl.innerHTML = `<li class="history__empty">No items yet. Browse books to build history.</li>`;
       return;
     }
 
-    historyList.innerHTML = recentBooks.map(b => `
-      <li class="history__item">
-        <a href="borrow.html?id=${b.id}" class="history__card">
-          <img src="${normalizeCover(b.cover)}" alt="${b.title}" class="history__img"
-               onerror="this.src='images/placeholder-cover.png'">
-          <div class="history__info">
-            <div class="history__title">${b.title}</div>
-            <div class="history__author">${b.author || ""}</div>
-          </div>
-        </a>
-      </li>
-    `).join("");
+    listEl.innerHTML = recentBooks
+      .map(
+        (book) => `
+          <li class="history__item">
+            <a href="borrow.html?id=${book.id}" class="history__card">
+              <img
+                src="${normalizeCoverPath(book.cover)}"
+                alt="${book.title}"
+                class="history__img"
+                onerror="this.src='images/placeholder-cover.png'"
+              >
+              <div class="history__info">
+                <div class="history__title">${book.title}</div>
+                <div class="history__author">${book.author || ""}</div>
+              </div>
+            </a>
+          </li>
+        `
+      )
+      .join("");
   }
 
-  // =========================
-  // 5) READ ID FROM URL
-  // =========================
   const params = new URLSearchParams(window.location.search);
-  const bookId = Number(params.get("id")) || 1;
+  const currentBookId = Number(params.get("id")) || 1;
 
-  // =========================
-  // 6) ELEMENTS
-  // =========================
   const statusEl = document.getElementById("bookStatus");
   const hintEl = document.getElementById("bookAvailabilityText");
   const borrowBtn = document.getElementById("borrowBtn");
   const returnBtn = document.getElementById("returnBtn");
-  const msgEl = document.getElementById("systemMessage");
+  const messageEl = document.getElementById("systemMessage");
 
-  function showMessage(text) {
-    if (!msgEl) return;
-    msgEl.textContent = text;
-    msgEl.style.opacity = "1";
-    clearTimeout(window._msgTimer);
-    window._msgTimer = setTimeout(() => {
-      msgEl.style.opacity = "0";
+  let messageTimerId = null;
+
+  function showToast(text) {
+    if (!messageEl) return;
+    messageEl.textContent = text;
+    messageEl.style.opacity = "1";
+
+    if (messageTimerId) clearTimeout(messageTimerId);
+    messageTimerId = setTimeout(() => {
+      messageEl.style.opacity = "0";
     }, 2500);
   }
 
   function renderAvailability() {
-    const borrowedNow = isBorrowed(bookId);
+    if (!statusEl || !hintEl || !borrowBtn || !returnBtn) return;
+
+    const borrowedNow = isBookBorrowed(currentBookId);
 
     if (!borrowedNow) {
       statusEl.textContent = "Available";
@@ -160,103 +150,105 @@ document.addEventListener("DOMContentLoaded", () => {
 
       borrowBtn.className = "book-btn book-btn--primary";
       returnBtn.className = "book-btn book-btn--ghost";
-    } else {
-      statusEl.textContent = "Borrowed";
-      statusEl.className = "badge badge--borrowed";
-      hintEl.textContent = "This book is currently borrowed";
-
-      borrowBtn.disabled = true;
-      returnBtn.disabled = false;
-
-      borrowBtn.className = "book-btn book-btn--ghost";
-      returnBtn.className = "book-btn book-btn--return-active";
+      return;
     }
+
+    statusEl.textContent = "Borrowed";
+    statusEl.className = "badge badge--borrowed";
+    hintEl.textContent = "This book is currently borrowed";
+
+    borrowBtn.disabled = true;
+    returnBtn.disabled = false;
+
+    borrowBtn.className = "book-btn book-btn--ghost";
+    returnBtn.className = "book-btn book-btn--return-active";
   }
 
-  // =========================
-  // 7) LOAD BOOK DATA (UI + save full details)
-  // =========================
   fetch("./books.json", { cache: "no-store" })
-    .then(res => res.json())
-    .then(books => {
-      const book = books.find(b => Number(b.id) === Number(bookId));
+    .then((res) => res.json())
+    .then((books) => {
+      const book = books.find((b) => Number(b.id) === Number(currentBookId));
       if (!book) {
         document.body.innerHTML = "<h2 style='padding:20px'>Book not found</h2>";
         return;
       }
 
-      // ----- Fill page -----
-      document.getElementById("bookTitle").textContent = book.title || "";
-      document.getElementById("bookAuthor").textContent = book.author || "";
-      document.getElementById("bookCategory").textContent = book.category || "";
-
-      const cat2 = document.getElementById("bookCategory2");
-      if (cat2) cat2.textContent = book.category || "";
-
-      document.getElementById("bookIsbn").textContent = book.isbn || "-";
-      document.getElementById("bookYear").textContent = book.year || "-";
-      document.getElementById("bookLanguage").textContent = book.language || "-";
-
-      const coverImg = document.getElementById("bookCover");
-      coverImg.src = normalizeCover(book.cover);
-
+      const titleEl = document.getElementById("bookTitle");
+      const authorEl = document.getElementById("bookAuthor");
+      const categoryEl = document.getElementById("bookCategory");
+      const category2El = document.getElementById("bookCategory2");
+      const isbnEl = document.getElementById("bookIsbn");
+      const yearEl = document.getElementById("bookYear");
+      const languageEl = document.getElementById("bookLanguage");
       const idEl = document.getElementById("bookId");
+      const coverImg = document.getElementById("bookCover");
+
+      if (titleEl) titleEl.textContent = book.title || "";
+      if (authorEl) authorEl.textContent = book.author || "";
+      if (categoryEl) categoryEl.textContent = book.category || "";
+      if (category2El) category2El.textContent = book.category || "";
+      if (isbnEl) isbnEl.textContent = book.isbn || "-";
+      if (yearEl) yearEl.textContent = book.year || "-";
+      if (languageEl) languageEl.textContent = book.language || "-";
       if (idEl) idEl.textContent = book.id;
 
-      // ----- Description toggle -----
+      if (coverImg) coverImg.src = normalizeCoverPath(book.cover);
+
       const descEl = document.getElementById("bookDescription");
       const toggleBtn = document.getElementById("toggleDescBtn");
 
-      descEl.textContent = book.description || "";
-      let expanded = false;
+      if (descEl) descEl.textContent = book.description || "";
 
-      function renderDesc() {
-        if (!book.description || book.description.length < 160) {
+      let isExpanded = false;
+
+      function renderDescriptionToggle() {
+        if (!descEl || !toggleBtn) return;
+
+        const text = book.description || "";
+        if (text.length < 160) {
           toggleBtn.style.display = "none";
           descEl.classList.remove("desc-text--clamp");
           return;
         }
 
         toggleBtn.style.display = "inline-flex";
-        descEl.classList.toggle("desc-text--clamp", !expanded);
+        descEl.classList.toggle("desc-text--clamp", !isExpanded);
 
-        const span = toggleBtn.querySelector("span");
-        if (span) span.textContent = expanded ? "Read less" : "Read more";
+        const label = toggleBtn.querySelector("span");
+        if (label) label.textContent = isExpanded ? "Read less" : "Read more";
       }
 
-      toggleBtn.addEventListener("click", () => {
-        expanded = !expanded;
-        renderDesc();
-      });
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          isExpanded = !isExpanded;
+          renderDescriptionToggle();
+        });
+      }
 
-      renderDesc();
+      renderDescriptionToggle();
 
-      // ----- Recently viewed -----
-      addRecent(bookId);
+      addToRecentlyViewed(currentBookId);
       renderRecentlyViewed(books);
-
-      // ----- Availability -----
       renderAvailability();
 
-      // ----- Borrow / Return -----
-      borrowBtn.addEventListener("click", () => {
-        if (isBorrowed(bookId)) return;
-        borrowBook(book);
-        showMessage("✅ Book borrowed successfully.");
-        renderAvailability();
+      if (borrowBtn) {
+        borrowBtn.addEventListener("click", () => {
+          if (isBookBorrowed(currentBookId)) return;
+          addBorrowedRecord(book);
+          showToast("✅ Book borrowed successfully.");
+          renderAvailability();
+        });
+      }
 
-        // ✅ אופציונלי: מעבר לאזור אישי ישר אחרי Borrow
-        // window.location.href = "profile.html";
-      });
+      if (returnBtn) {
+        returnBtn.addEventListener("click", () => {
+          if (!isBookBorrowed(currentBookId)) return;
+          moveBorrowedToHistory(book);
+          showToast("✅ Book returned successfully.");
+          renderAvailability();
+        });
+      }
 
-      returnBtn.addEventListener("click", () => {
-        if (!isBorrowed(bookId)) return;
-        returnBook(book);
-        showMessage("✅ Book returned successfully.");
-        renderAvailability();
-      });
-
-      // ----- Zoom follows mouse -----
       const coverWrap = document.getElementById("coverWrap");
       if (coverWrap && coverImg) {
         coverWrap.addEventListener("mousemove", (e) => {

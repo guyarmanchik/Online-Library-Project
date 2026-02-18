@@ -1,44 +1,38 @@
-// darkmode.js
-// Shared dark mode toggle for all pages.
-// Works with buttons: #themeToggle (desktop) and #themeToggleMobile (inside hamburger).
-
 document.addEventListener("DOMContentLoaded", () => {
-  const STORAGE_KEY = "bookify-theme";
-  const buttons = Array.from(
+  const THEME_STORAGE_KEY = "bookify-theme";
+  const toggleButtons = Array.from(
     document.querySelectorAll("#themeToggle, #themeToggleMobile")
   );
 
-  // If a page doesn't have toggles, do nothing
-  if (buttons.length === 0) return;
+  const prefersDarkMode =
+    window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
 
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  function isDarkModeActive() {
+    return document.body.classList.contains("dark");
+  }
 
-  function setIcons() {
-    const isDark = document.body.classList.contains("dark");
-    buttons.forEach((btn) => {
-      btn.textContent = isDark ? "☀️" : "🌙";
-    });
+  function updateToggleIcons() {
+    if (toggleButtons.length === 0) return;
+    const icon = isDarkModeActive() ? "☀️" : "🌙";
+    toggleButtons.forEach((btn) => (btn.textContent = icon));
   }
 
   function applyTheme(theme) {
-    document.body.classList.toggle("dark", theme === "dark");
+    const isDark = theme === "dark";
+    document.body.classList.toggle("dark", isDark);
     document.documentElement.dataset.theme = theme;
-    setIcons();
+    updateToggleIcons();
   }
 
-  // Init theme from storage (fallback to OS preference)
-  const saved = localStorage.getItem(STORAGE_KEY);
-  const initial = saved || (prefersDark ? "dark" : "light");
-  applyTheme(initial);
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  const initialTheme = savedTheme || (prefersDarkMode ? "dark" : "light");
+  applyTheme(initialTheme);
 
-  // Toggle on click + persist
-  buttons.forEach((btn) => {
+  toggleButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const next = document.body.classList.contains("dark") ? "light" : "dark";
-      localStorage.setItem(STORAGE_KEY, next);
-      applyTheme(next);
+      const nextTheme = isDarkModeActive() ? "light" : "dark";
+      localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+      applyTheme(nextTheme);
     });
   });
 });

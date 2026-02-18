@@ -1,70 +1,64 @@
-// header.js
 document.addEventListener("DOMContentLoaded", () => {
-  const burger = document.getElementById("bfBurger");
-  const nav = document.querySelector(".bf-nav");
+  const burgerButton = document.getElementById("bfBurger");
+  const navMenu = document.querySelector(".bf-nav");
 
-  // אם בעמוד אין המבורגר/ניווט - לא עושים כלום
-  if (!burger || !nav) return;
+  if (burgerButton && navMenu) {
+    burgerButton.setAttribute("aria-expanded", "false");
 
-  // נגישות
-  burger.setAttribute("aria-expanded", "false");
+    const isMenuOpen = () => navMenu.classList.contains("is-open");
 
-  function openMenu() {
-    nav.classList.add("is-open");
-    burger.setAttribute("aria-expanded", "true");
-  }
-
-  function closeMenu() {
-    nav.classList.remove("is-open");
-    burger.setAttribute("aria-expanded", "false");
-  }
-
-  function toggleMenu() {
-    nav.classList.contains("is-open") ? closeMenu() : openMenu();
-  }
-
-  burger.addEventListener("click", (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
-
-  // סגירה בלחיצה על לינק בתפריט
-  nav.addEventListener("click", (e) => {
-    const link = e.target.closest("a");
-    if (link) closeMenu();
-  });
-
-  // סגירה בלחיצה מחוץ לתפריט
-  document.addEventListener("click", (e) => {
-    if (!nav.classList.contains("is-open")) return;
-    if (nav.contains(e.target) || burger.contains(e.target)) return;
-    closeMenu();
-  });
-
-  // סגירה ב-ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
-});
-// ===== Footer accordions: desktop always open, mobile collapsible =====
-document.addEventListener("DOMContentLoaded", () => {
-  const mqDesktop = window.matchMedia("(min-width: 1025px)");
-  const acc = Array.from(document.querySelectorAll("details.foot-acc"));
-
-  if (acc.length === 0) return;
-
-  function syncFooterAccordions() {
-    if (mqDesktop.matches) {
-      // Desktop: always open
-      acc.forEach(d => (d.open = true));
-    } else {
-      // Mobile/Tablet: allow accordion (start closed if you want)
-      acc.forEach(d => (d.open = false));
+    function openMenu() {
+      navMenu.classList.add("is-open");
+      burgerButton.setAttribute("aria-expanded", "true");
     }
+
+    function closeMenu() {
+      navMenu.classList.remove("is-open");
+      burgerButton.setAttribute("aria-expanded", "false");
+    }
+
+    function toggleMenu() {
+      isMenuOpen() ? closeMenu() : openMenu();
+    }
+
+    burgerButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    navMenu.addEventListener("click", (e) => {
+      const link = e.target.closest("a");
+      if (link) closeMenu();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!isMenuOpen()) return;
+      if (navMenu.contains(e.target) || burgerButton.contains(e.target)) return;
+      closeMenu();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
   }
 
-  // run now + on resize changes
-  syncFooterAccordions();
-  mqDesktop.addEventListener("change", syncFooterAccordions);
-});
+  const footerAccordions = Array.from(document.querySelectorAll("details.foot-acc"));
+  if (footerAccordions.length > 0) {
+    const desktopQuery = window.matchMedia("(min-width: 1025px)");
+    let lastDesktopState = desktopQuery.matches;
 
+    function syncFooterAccordions(force) {
+      const isDesktop = desktopQuery.matches;
+
+      if (force || isDesktop !== lastDesktopState) {
+        footerAccordions.forEach((d) => {
+          d.open = isDesktop ? true : false;
+        });
+        lastDesktopState = isDesktop;
+      }
+    }
+
+    syncFooterAccordions(true);
+    desktopQuery.addEventListener("change", () => syncFooterAccordions(false));
+  }
+});

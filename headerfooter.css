@@ -1,4 +1,6 @@
-/* ===== GLOBAL BASE (shared) ===== */
+/* =========================
+   GLOBAL BASE
+   ========================= */
 :root {
   --blue1: #8a3a16;
   --blue2: #e46a10;
@@ -9,23 +11,23 @@
   --text: #2b1409;
   --muted: #7a4a32;
 
-  --border: rgba(43, 20, 9, 0.15);
-  --shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+  --border: rgba(43, 20, 9, .15);
+  --shadow: 0 14px 30px rgba(0, 0, 0, .18);
 
   --radius: 18px;
 }
 
-/* ===== THEME OVERRIDES ===== */
+/* =========================
+   DARK THEME
+   ========================= */
 html[data-theme="dark"],
 body.dark {
   --bg: #0f0c0a;
   --card: #15110f;
-
-  --text: rgba(255, 255, 255, 0.90);
-  --muted: rgba(255, 255, 255, 0.62);
-
-  --border: rgba(255, 255, 255, 0.14);
-  --shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  --text: rgba(255, 255, 255, .9);
+  --muted: rgba(255, 255, 255, .62);
+  --border: rgba(255, 255, 255, .14);
+  --shadow: 0 14px 30px rgba(0, 0, 0, .45);
 }
 
 html {
@@ -38,6 +40,13 @@ html[data-theme="dark"] {
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  /* ✅ מונע "בריחה הצידה" */
 }
 
 body {
@@ -58,12 +67,10 @@ img {
   display: block;
 }
 
-/* shared width helpers used across pages */
-.wrap {
-  width: min(1120px, calc(100% - 40px));
-  margin: 0 auto;
-}
-
+/* =========================
+   WIDTH HELPERS
+   ========================= */
+.wrap,
 .container {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
@@ -73,13 +80,13 @@ img {
    HEADER
    ========================= */
 .bf-header {
-  width: 100%;
   background: var(--card);
   border-bottom: 1px solid var(--border);
 }
 
 .bf-header__inner {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 10px 20px;
 
@@ -87,7 +94,9 @@ img {
   align-items: center;
   gap: 16px;
 
-  position: relative; /* בשביל ה-dropdown במובייל */
+  position: relative;
+  min-width: 0;
+  /* ✅ מונע דחיפת רוחב */
 }
 
 /* BRAND */
@@ -96,19 +105,19 @@ img {
   align-items: center;
   gap: 10px;
   font-weight: 800;
-  flex: 0 0 auto;
+  flex-shrink: 0;
 }
 
 .bf-logo {
   width: 88px;
   height: 88px;
-  flex-shrink: 0;
   object-fit: contain;
 }
 
-/* NAV (Desktop: center) */
+/* NAV */
 .bf-nav {
   flex: 1;
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,29 +128,28 @@ img {
   padding: 8px 12px;
   border-radius: 999px;
   font-weight: 700;
-  color: var(--text);
 }
 
 .bf-nav__link:hover {
-  background: rgba(228, 106, 16, 0.10);
+  background: rgba(228, 106, 16, .10);
   color: var(--blue1);
 }
 
-.bf-nav__link.active,
 .bf-nav__link[aria-current="page"] {
-  background: rgba(228, 106, 16, 0.14);
+  background: rgba(228, 106, 16, .14);
   color: var(--blue1);
 }
 
-/* AUTH (always right) */
+/* AUTH */
 .bf-auth {
   margin-left: auto;
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-shrink: 0;
 }
 
-/* Buttons */
+/* BUTTONS */
 .bf-btn {
   border: 1px solid var(--border);
   background: var(--card);
@@ -149,21 +157,22 @@ img {
   border-radius: 14px;
   font-weight: 800;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .bf-btn--primary {
   border: none;
   background: linear-gradient(110deg, var(--blue1), var(--blue2));
   color: #fff;
-  box-shadow: 0 12px 26px rgba(228, 106, 16, 0.28);
+  box-shadow: 0 12px 26px rgba(228, 106, 16, .28);
 }
 
 .bf-btn--ghost:hover {
-  border-color: rgba(228, 106, 16, 0.35);
-  background: rgba(228, 106, 16, 0.08);
+  border-color: rgba(228, 106, 16, .35);
+  background: rgba(228, 106, 16, .08);
 }
 
-/* Theme toggle */
+/* THEME BUTTON */
 .bf-themeToggle {
   width: 42px;
   height: 42px;
@@ -174,15 +183,15 @@ img {
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: .2s;
 }
 
 .bf-themeToggle:hover {
-  background: rgba(228, 106, 16, 0.08);
+  background: rgba(228, 106, 16, .08);
   transform: scale(1.05);
 }
 
-/* Hamburger (default hidden) */
+/* BURGER */
 .bf-burger {
   display: none;
   border: 1px solid var(--border);
@@ -191,28 +200,48 @@ img {
   padding: 10px 12px;
   font-size: 18px;
   cursor: pointer;
-  margin-left: 8px; /* צמוד ללוגו */
 }
 
-/* dark button inside menu default hidden */
 .bf-themeToggle--inMenu {
   display: none;
 }
 
-/* ===== TABLET + PHONE (<=1024): hamburger + dropdown nav ===== */
-@media (max-width: 1024px) {
+/* =========================
+   HEADER RWD
+   ========================= */
+
+/* <=1024: tighter spacing (nav still visible) */
+@media (max-width:1024px) {
+  .bf-header__inner {
+    padding: 10px 14px;
+  }
+
+  .bf-logo {
+    width: 76px;
+    height: 76px;
+  }
+
+  .bf-nav {
+    gap: 8px;
+  }
+
+  .bf-nav__link {
+    padding: 8px 10px;
+  }
+}
+
+/* 481-768: burger menu */
+@media (min-width:481px) and (max-width:768px) {
   .bf-burger {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* ברירת מחדל: תפריט סגור */
   .bf-nav {
     display: none;
   }
 
-  /* תפריט פתוח */
   .bf-nav.is-open {
     display: flex;
     position: absolute;
@@ -227,26 +256,65 @@ img {
 
     flex-direction: column;
     gap: 10px;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     z-index: 999;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
   }
 }
 
-/* ===== PHONE (<=480): tighten header + move dark toggle into menu ===== */
-@media (max-width: 480px) {
+/* <=480: burger + logo/buttons sizing */
+@media (max-width:480px) {
   .bf-header__inner {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 8px 12px;
+    gap: 10px;
   }
 
   .bf-logo {
-    width: 58px;
-    height: 58px;
-    object-fit: contain;
+    width: 64px;
+    height: 64px;
   }
 
-  /* hide top dark button, show inside menu */
+  .bf-burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 16px;
+  }
+
+  .bf-auth {
+    gap: 6px;
+  }
+
+  .bf-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+
+  .bf-nav {
+    display: none;
+  }
+
+  .bf-nav.is-open {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 12px;
+    right: 12px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 12px;
+
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+  }
+
   .bf-auth .bf-themeToggle {
     display: none;
   }
@@ -260,22 +328,19 @@ img {
 /* =========================
    FOOTER
    ========================= */
-.site-footer,
 footer {
   background: linear-gradient(180deg, #3a1f14, #1f0f08);
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(255, 255, 255, .86);
   margin-top: 40px;
 }
 
-/* Main footer grid */
 #foot-grid {
   padding: 64px 0 46px;
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr 0.7fr 1fr;
+  grid-template-columns: 1.3fr .7fr .7fr 1fr;
   gap: 44px;
 }
 
-/* Brand row */
 #foot-brand {
   display: flex;
   align-items: center;
@@ -283,21 +348,15 @@ footer {
   margin-bottom: 8px;
 }
 
-/* Logo */
 #foot-logo {
   width: 100px;
   height: 100px;
-  border-radius: 14px;
   display: grid;
   place-items: center;
-  overflow: hidden;
-  padding: 6px;
-  flex-shrink: 0;
 }
 
 #foot-logo img {
   width: 85%;
-  height: auto;
   object-fit: contain;
 }
 
@@ -305,54 +364,39 @@ footer {
   font-size: 26px;
   font-weight: 900;
   color: #fff;
-  line-height: 1;
 }
 
 #tag {
-  margin: 0;
   margin-top: 4px;
-  color: rgba(255, 255, 255, 0.60);
+  color: rgba(255, 255, 255, .60);
   line-height: 1.75;
-  max-width: 360px;
-}
-
-footer h4 {
-  margin: 6px 0 16px;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  font-weight: 900;
-  color: #f3d2b3;
 }
 
 footer a {
   display: block;
   padding: 9px 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, .78);
   font-weight: 650;
 }
 
 footer a:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, .90);
 }
 
 .hrs {
   display: flex;
   justify-content: space-between;
-  gap: 18px;
   padding: 9px 0;
-  color: rgba(255, 255, 255, 0.62);
-  font-weight: 650;
+  color: rgba(255, 255, 255, .62);
 }
 
 #bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, .12);
   padding: 22px 0 30px;
   display: flex;
   justify-content: space-between;
-  gap: 18px;
   flex-wrap: wrap;
-  color: rgba(255, 255, 255, 0.45);
-  font-weight: 650;
+  color: rgba(255, 255, 255, .45);
 }
 
 #links {
@@ -361,93 +405,128 @@ footer a:hover {
   flex-wrap: wrap;
 }
 
-#links a {
-  color: rgba(255, 255, 255, 0.65);
-  font-weight: 800;
-  padding: 0;
+/* FOOTER ACCORDIONS */
+.foot-acc {
+  border: 0;
 }
-
-/* footer responsive */
-@media (max-width: 1100px) {
-  #foot-grid {
-    grid-template-columns: 1.2fr 1fr 1fr;
-  }
-
-  #foot-grid > div:last-child {
-    grid-column: 1 / -1;
-    max-width: 520px;
-  }
-}
-
-@media (max-width: 780px) {
-  #foot-grid {
-    grid-template-columns: 1fr;
-  }
-
-  #tag {
-    max-width: none;
-  }
-}
-/* ===== Footer accordions (EXPLORE + ACCOUNT) ===== */
-.foot-acc { border: 0; }
 
 .foot-acc__sum {
   list-style: none;
   cursor: pointer;
   user-select: none;
-
   display: flex;
-  align-items: center;
   justify-content: space-between;
-
   padding: 9px 0;
   font-weight: 900;
-  letter-spacing: 0.12em;
-  font-size: 14px;
-  color: #f3d2b3; /* same as footer h4 */
+  letter-spacing: .12em;
+  color: #f3d2b3;
 }
 
-.foot-acc__sum::-webkit-details-marker { display: none; }
+.foot-acc__sum::-webkit-details-marker {
+  display: none;
+}
 
 .foot-acc__sum::after {
-  content: "☰";         /* hamburger */
-  font-size: 16px;
-  opacity: .9;
+  content: "☰";
 }
 
 .foot-acc[open] .foot-acc__sum::after {
-  content: "✕";         /* close */
+  content: "✕";
 }
 
-.foot-acc__panel a {
-  display: block;
-  padding: 9px 0;
-  color: rgba(255, 255, 255, 0.78);
-  font-weight: 650;
+/* Desktop >=1025: always open */
+@media (min-width:1025px) {
+  .foot-acc__sum {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .foot-acc__sum::after {
+    content: "";
+  }
 }
 
-.foot-acc__panel a:hover { color: rgba(255, 255, 255, 0.9); }
+/* =========================
+   FOOTER RWD
+   ========================= */
 
-/* Desktop: show them as normal columns (open, no icon) */
-@media (min-width: 1025px) {
-  .foot-acc__sum { cursor: default; }
-  .foot-acc__sum::after { content: ""; }
-  .foot-acc { padding-top: 0; margin-top: 0; }
-  .foot-acc__panel { padding-top: 0; }
-}
+/* <=1024: 2 columns + סדר קבוע (ACCOUNT ליד EXPLORE) */
+@media (max-width:1024px) {
+  #foot-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    align-items: start;
+  }
 
-/* Tablet + phone: accordion styling */
-@media (max-width: 1024px) {
+  #foot-name {
+    font-size: 22px;
+  }
+
+  /* BRAND full width */
+  #foot-grid> :nth-child(1) {
+    grid-column: 1 / -1;
+  }
+
+  /* ACCOUNT + EXPLORE side-by-side */
+  #foot-grid> :nth-child(2) {
+    grid-column: 1;
+  }
+
+  #foot-grid> :nth-child(3) {
+    grid-column: 2;
+  }
+
+  /* HOURS full width */
+  #foot-grid> :nth-child(4) {
+    grid-column: 1 / -1;
+  }
+
   .foot-acc {
-    border-top: 1px solid rgba(255,255,255,0.12);
+    border-top: 1px solid rgba(255, 255, 255, .12);
     padding-top: 8px;
     margin-top: 8px;
   }
 }
-/* ===== Desktop: no hamburger, always open, not clickable ===== */
-@media (min-width: 1025px) {
-  .foot-acc__sum::after { content: ""; }   /* hide ☰ */
-  .foot-acc__sum { pointer-events: none; } /* disable click on desktop */
-  .foot-acc[open] .foot-acc__sum::after { content: ""; } /* hide ✕ too */
+
+/* 481-768: עמודה אחת */
+@media (min-width:481px) and (max-width:768px) {
+  #foot-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 44px 0 34px;
+  }
+
+  #foot-grid> :nth-child(1),
+  #foot-grid> :nth-child(2),
+  #foot-grid> :nth-child(3),
+  #foot-grid> :nth-child(4) {
+    grid-column: 1 / -1;
+  }
 }
 
+/* <=480: עמודה אחת (EXPLORE ואז ACCOUNT מתחת) + bottom stack */
+@media (max-width:480px) {
+  #foot-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 40px 0 30px;
+  }
+
+  /* ✅ חובה כדי שלא "יישארו" חוקים מ-<=1024 */
+  #foot-grid> :nth-child(1),
+  #foot-grid> :nth-child(2),
+  #foot-grid> :nth-child(3),
+  #foot-grid> :nth-child(4) {
+    grid-column: 1 / -1;
+  }
+
+  #bottom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  #links {
+    gap: 14px;
+  }
+}
