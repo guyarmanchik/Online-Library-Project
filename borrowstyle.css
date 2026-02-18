@@ -510,7 +510,7 @@ body.dark .history__card {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .details__grid {
     grid-template-columns: 1fr;
   }
