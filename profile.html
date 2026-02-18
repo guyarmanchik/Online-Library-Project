@@ -2,64 +2,53 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bookify | Profile</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="headerfooter.css">
-  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="headerfooter.css" />
+  <link rel="stylesheet" href="profile.css" />
 </head>
 
 <body>
-
-  <!-- ===== HEADER ===== -->
   <header class="bf-header">
     <div class="bf-header__inner container">
-
       <a class="bf-brand" href="./home.html">
-        <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'">
+        <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'" />
       </a>
 
-      <!-- ☰ Hamburger (phone only) -->
-      <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
+      <button class="bf-burger" id="bfBurger" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
 
-      <!-- NAV -->
       <nav aria-label="Primary" class="bf-nav">
         <a class="bf-nav__link" href="home.html">Home</a>
         <a class="bf-nav__link" href="catalog.html">Browse</a>
         <a class="bf-nav__link" href="about.html">About</a>
         <a class="bf-nav__link" href="contact.html">Contact Us</a>
 
-        <!-- 🌙 Dark mode inside hamburger (mobile only) -->
-        <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" aria-label="Toggle dark mode">
+        <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" type="button"
+          aria-label="Toggle dark mode">
           🌙
         </button>
       </nav>
 
-      <!-- Actions -->
       <div class="bf-auth">
-        <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <button id="themeToggle" class="bf-themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
         <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
         <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
       </div>
-
     </div>
   </header>
 
-  <!-- ===== PAGE CONTENT (CENTERED WRAPPER) ===== -->
   <section class="profile-area">
-
-    <!-- Title -->
     <div class="mybooks-title">
       <h1>My Books</h1>
       <p>Manage your borrowed books and reading history</p>
     </div>
 
-    <!-- Profile Card -->
     <div class="profile-card">
       <div class="profile-left">
         <div class="avatar">
@@ -80,7 +69,6 @@
       <a href="#" class="edit-btn">✏️ Edit Profile</a>
     </div>
 
-    <!-- Stats -->
     <section class="stats">
       <div class="stat-card">
         <div class="icon icon-blue">📘</div>
@@ -107,7 +95,6 @@
       </div>
     </section>
 
-    <!-- Tabs -->
     <section class="panel">
       <div class="tabs">
         <button class="tab active" id="tabCurrent" type="button">
@@ -120,7 +107,6 @@
       </div>
 
       <div class="content">
-
         <div id="currentView" class="view">
           <div id="currentList" class="list"></div>
 
@@ -141,68 +127,69 @@
             <p>Open a few books and you’ll see them here.</p>
           </div>
         </div>
-
       </div>
     </section>
-
   </section>
 
-  <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="wrap" id="foot-grid">
-            <div>
-                <div id="foot-brand">
-                    <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
-                    <span id="foot-name">Bookify</span>
-                </div>
-                <p id="tag">
-                    Your gateway to endless knowledge.<br />
-                    Discover, borrow, and explore our curated collection of literary treasures.
-                </p>
-            </div>
-
-            <details class="foot-acc" open>
-                <summary class="foot-acc__sum">EXPLORE</summary>
-                <div class="foot-acc__panel">
-                    <a href="about.html">About Us</a>
-                    <a href="catalog.html">Browse Catalog</a>
-                    <a href="catalog.html">Fiction</a>
-                    <a href="catalog.html">Non-Fiction</a>
-                </div>
-            </details>
-
-            <details class="foot-acc" open>
-                <summary class="foot-acc__sum">ACCOUNT</summary>
-                <div class="foot-acc__panel">
-                    <a href="profile.html">My Profile</a>
-                    <a href="profile.html">Borrowed Books</a>
-                    <a href="profile.html">Reading History</a>
-                </div>
-            </details>
-
-            <div>
-                <h4>LIBRARY HOURS</h4>
-                <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
-                <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
-                <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
-            </div>
+  <footer>
+    <div class="wrap" id="foot-grid">
+      <div>
+        <div id="foot-brand">
+          <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
+          <span id="foot-name">Bookify</span>
         </div>
+        <p id="tag">
+          Your gateway to endless knowledge.<br />
+          Discover, borrow, and explore our curated collection of literary treasures.
+        </p>
+      </div>
 
-        <div class="wrap" id="bottom">
-            <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
-            <div id="links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
-            </div>
+      <details class="foot-acc" open>
+        <summary class="foot-acc__sum">EXPLORE</summary>
+        <div class="foot-acc__panel">
+          <a href="about.html">About Us</a>
+          <a href="catalog.html">Browse Catalog</a>
+          <a href="catalog.html">Fiction</a>
+          <a href="catalog.html">Non-Fiction</a>
         </div>
-    </footer>
+      </details>
 
-  <!-- ===== SCRIPTS ===== -->
+      <details class="foot-acc" open>
+        <summary class="foot-acc__sum">ACCOUNT</summary>
+        <div class="foot-acc__panel">
+          <a href="profile.html">My Profile</a>
+          <a href="profile.html">Borrowed Books</a>
+          <a href="profile.html">Reading History</a>
+        </div>
+      </details>
+
+      <div>
+        <h4>LIBRARY HOURS</h4>
+        <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
+        <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
+        <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
+      </div>
+    </div>
+
+    <div class="wrap" id="bottom">
+      <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
+      <div id="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="darkmode.js" defer></script>
+  <script src="header.js" defer></script>
   <script src="profile.js" defer></script>
-  <script src="darkmode.js"></script>
-  <script src="header.js"></script>
-
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+    });
+  </script>
 </body>
 
 </html>

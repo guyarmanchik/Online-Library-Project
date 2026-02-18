@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Empty state message =====
   const EMPTY_CATEGORY_MESSAGE = `
     <div class="catalog-error">
       <h3>Nothing here yet 📚</h3>
@@ -10,32 +9,24 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `;
 
-  // Footer year
   const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   const chipsWrap = document.getElementById("chips");
-  const q = document.getElementById("q");
-    // ===== Read search query from URL (?q=...) and apply it =====
-  const params = new URLSearchParams(window.location.search);
-  const initialQ = (params.get("q") || "").trim();
-
-  if (initialQ && q) {
-    q.value = initialQ;
-    q.dispatchEvent(new Event("input", { bubbles: true }));
-  }
-
+  const searchInput = document.getElementById("q");
   const grid = document.getElementById("grid");
   const countEl = document.getElementById("visibleCount");
+
+  const params = new URLSearchParams(window.location.search);
+  const initialSearch = (params.get("q") || "").trim();
+  if (initialSearch && searchInput) searchInput.value = initialSearch;
 
   let activeGenre = "All";
   let allBooks = [];
 
-  // ===== STORAGE HELPERS (sync status with profile/borrow) =====
-  // ✅ MUST MATCH profile.js
-  const BORROWED_KEY = "bookify_borrowed"; // [{id,title,author,cover,borrowedAt,...}]
+  const BORROWED_KEY = "bookify_borrowed";
 
-  function load(key, fallback) {
+  function readStorage(key, fallback) {
     try {
       return JSON.parse(localStorage.getItem(key)) ?? fallback;
     } catch {
@@ -43,9 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ✅ book considered borrowed if its id exists in bookify_borrowed
-  function isBorrowed(bookId) {
-    const borrowed = load(BORROWED_KEY, []);
+  function isBookBorrowed(bookId) {
+    const borrowed = readStorage(BORROWED_KEY, []);
     return borrowed.some((x) => Number(x.id) === Number(bookId));
   }
 
@@ -58,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (c === "mystery") return "Mystery";
     if (c === "romance") return "Romance";
 
-    // default
     return "Fiction";
   }
 
@@ -68,13 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return path;
   }
 
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+  function escapeHtml(value) {
+    return String(value)
+      .split("&").join("&amp;")
+      .split("<").join("&lt;")
+      .split(">").join("&gt;")
+      .split('"').join("&quot;")
+      .split("'").join("&#039;");
   }
 
   function pseudoRating(book) {
@@ -86,33 +75,37 @@ document.addEventListener("DOMContentLoaded", () => {
   function createCard(book) {
     const title = book.title || "Untitled";
     const author = book.author || "Unknown";
-    const genre = mapCategory(book.category);
     const cover = normalizeCoverPath(book.cover);
 
-    // ✅ Availability synced with localStorage bookify_borrowed
-    const available = !isBorrowed(book.id);
-
+    const available = !isBookBorrowed(book.id);
     const rating = pseudoRating(book);
 
     return `
-      <article class="book-card"
-        data-id="${book.id}"
+      <article
+        class="book-card"
+        data-id="${escapeHtml(book.id)}"
         role="button"
         tabindex="0"
         aria-label="Open details for ${escapeHtml(title)}"
       >
         <div class="book-cover">
-          <img src="${cover}" alt="${escapeHtml(title)} cover"
-               loading="lazy"
-               decoding="async"
-               onerror="this.src='images/placeholder-cover.png'">
+          <img
+            src="${cover}"
+            alt="${escapeHtml(title)} cover"
+            loading="lazy"
+            decoding="async"
+            onerror="this.src='images/placeholder-cover.png'"
+          >
         </div>
+
         <h3 class="book-title">${escapeHtml(title)}</h3>
         <p class="book-author">${escapeHtml(author)}</p>
+
         <div class="book-meta">
           <div class="book-rating">
             <span class="star">★</span><span>${rating}</span>
           </div>
+
           <span class="book-badge ${available ? "" : "book-badge--off"}">
             ${available ? "Available" : "Unavailable"}
           </span>
@@ -122,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getFilteredBooks() {
-    const term = (q?.value || "").toLowerCase().trim();
+    const term = (searchInput?.value || "").toLowerCase().trim();
 
     return allBooks.filter((book) => {
       const genre = mapCategory(book.category);
@@ -149,29 +142,26 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.innerHTML = list.map(createCard).join("");
 
     grid.querySelectorAll(".book-card").forEach((card) => {
-      const go = () => {
+      const goToDetails = () => {
         const id = card.dataset.id;
-        window.location.href = `borrow.html?id=${id}`;
+        window.location.href = `borrow.html?id=${encodeURIComponent(id)}`;
       };
 
-      card.addEventListener("click", go);
+      card.addEventListener("click", goToDetails);
 
-      // keyboard support (Enter/Space)
       card.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          go();
+          goToDetails();
         }
       });
     });
   }
 
   function applyFilters() {
-    const filtered = getFilteredBooks();
-    renderBooks(filtered);
+    renderBooks(getFilteredBooks());
   }
 
-  // chips filters
   if (chipsWrap) {
     chipsWrap.addEventListener("click", (e) => {
       const btn = e.target.closest(".chip");
@@ -185,10 +175,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // search
-  if (q) q.addEventListener("input", applyFilters);
+  if (searchInput) searchInput.addEventListener("input", applyFilters);
 
-  // load books
   fetch("books.json", { cache: "no-store" })
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status} (${res.statusText})`);
@@ -216,6 +204,5 @@ document.addEventListener("DOMContentLoaded", () => {
       if (countEl) countEl.textContent = "0";
     });
 
-  // ✅ bonus: refresh badges when tab becomes active
   window.addEventListener("focus", applyFilters);
 });

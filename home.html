@@ -1,270 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookify</title>
-    <link rel="stylesheet" href="headerfooter.css">
-    <link rel="stylesheet" href="homeStyle.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookify</title>
+  <link rel="stylesheet" href="headerfooter.css" />
+  <link rel="stylesheet" href="homeStyle.css" />
 </head>
 
 <body>
+  <header class="bf-header">
+    <div class="bf-header__inner container">
+      <a class="bf-brand" href="./home.html">
+        <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo" onerror="this.style.display='none'">
+      </a>
 
-    <!-- ===== HEADER ===== -->
-    <header class="bf-header">
-        <div class="bf-header__inner container">
-            <a class="bf-brand" href="./home.html">
-                <img class="bf-logo" src="images/Newlogo2.png" alt="Bookify logo">
-            </a>
+      <button class="bf-burger" id="bfBurger" type="button" aria-label="Open menu">☰</button>
 
-            <button class="bf-burger" id="bfBurger" aria-label="Open menu">☰</button>
+      <nav aria-label="Primary" class="bf-nav">
+        <a class="bf-nav__link" href="home.html" aria-current="page">Home</a>
+        <a class="bf-nav__link" href="catalog.html">Browse</a>
+        <a class="bf-nav__link" href="about.html">About</a>
+        <a class="bf-nav__link" href="contact.html">Contact Us</a>
 
-            <nav aria-label="Primary" class="bf-nav">
-                <a class="bf-nav__link" href="home.html">Home</a>
-                <a class="bf-nav__link" href="catalog.html">Browse</a>
-                <a class="bf-nav__link" href="about.html">About</a>
-                <a class="bf-nav__link" href="contact.html">Contact Us</a>
-            </nav>
+        <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" type="button" aria-label="Toggle dark mode">
+          🌙
+        </button>
+      </nav>
 
-            <div class="bf-auth">
-                <button id="themeToggle" class="bf-themeToggle" aria-label="Toggle dark mode">🌙</button>
-                <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
-                <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
-            </div>
-        </div>
-    </header>
+      <div class="bf-auth">
+        <button id="themeToggle" class="bf-themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+        <a href="profile.html" class="bf-btn bf-btn--ghost">Login</a>
+        <a href="profile.html" class="bf-btn bf-btn--primary">Sign up</a>
+      </div>
+    </div>
+  </header>
 
-
-
-    <!-- ===== HERO (TEXT + SEARCH CENTERED) ===== -->
+  <main>
     <section class="bf-heroWrap">
-        <div class="bf-heroBox container">
-
-            <div class="hero-text">
-                <h1>
-                    Discover Your Next<br>
-                    <span class="highlight">Great Adventure</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Borrow, read, and return. Thousands of stories waiting for you.
-                </p>
-            </div>
-
-            <form id="searchForm" class="bf-search__box" role="search">
-                <input id="searchInput" type="search" placeholder="Search by title / author / category..."
-                    aria-label="Search" />
-                <button class="bf-search__btn" type="submit" aria-label="Search">🔎</button>
-            </form>
-
-            <p id="searchStatus" class="bf-search__hint">Try: Harry, habits, fantasy…</p>
-
+      <div class="bf-heroBox container">
+        <div class="hero-text">
+          <h1>
+            Discover Your Next<br />
+            <span class="highlight">Great Adventure</span>
+          </h1>
+          <p class="hero-subtitle">
+            Borrow, read, and return. Thousands of stories waiting for you.
+          </p>
         </div>
+
+        <form id="searchForm" class="bf-search__box" role="search">
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search by title / author / category..."
+            aria-label="Search"
+          />
+          <button class="bf-search__btn" type="submit" aria-label="Search">🔎</button>
+        </form>
+
+        <p id="searchStatus" class="bf-search__hint">Try: Harry, habits, fantasy…</p>
+      </div>
     </section>
 
-    <!-- ===== CATEGORY OF THE WEEK ===== -->
     <section class="bf-section container">
-        <div class="bf-section__header">
-            <h2 class="bf-h2">Category of the Week</h2>
+      <div class="bf-section__header">
+        <h2 class="bf-h2">Category of the Week</h2>
+      </div>
+
+      <div class="bf-feature">
+        <button class="bf-arrow bf-catArrow" id="catPrev" type="button" aria-label="Previous category">‹</button>
+
+        <div class="bf-feature__card">
+          <h3 id="categoryTitle" class="bf-feature__title">Fantasy</h3>
+          <p id="categoryDesc" class="bf-feature__desc bf-catDesc">
+            Magic, adventures, and unforgettable worlds.
+          </p>
         </div>
 
-        <div class="bf-feature">
-            <button class="bf-arrow bf-catArrow" id="catPrev" aria-label="Previous category">‹</button>
+        <button class="bf-arrow bf-catArrow" id="catNext" type="button" aria-label="Next category">›</button>
+      </div>
 
-            <div class="bf-feature__card">
-                <h3 id="categoryTitle" class="bf-feature__title">Fantasy</h3>
-                <p id="categoryDesc" class="bf-feature__desc bf-catDesc">
-                    Magic, adventures, and unforgettable worlds.
-                </p>
-            </div>
+      <div class="bf-hero">
+        <button class="bf-hero__arrow" id="heroPrev" type="button" aria-label="Previous image">‹</button>
 
-            <button class="bf-arrow bf-catArrow" id="catNext" aria-label="Next category">›</button>
+        <div class="bf-hero__frame">
+          <img id="heroImg" src="images/librarybackground.avif" alt="Library hero" />
         </div>
 
-        <!-- Image carousel -->
-        <div class="bf-hero">
-            <button class="bf-hero__arrow" id="heroPrev" aria-label="Previous image">‹</button>
-
-            <div class="bf-hero__frame">
-                <img id="heroImg" src="images/librarybackground.avif" alt="Library hero">
-            </div>
-
-            <button class="bf-hero__arrow" id="heroNext" aria-label="Next image">›</button>
-        </div>
+        <button class="bf-hero__arrow" id="heroNext" type="button" aria-label="Next image">›</button>
+      </div>
     </section>
 
-    <!-- ===== BEST SELLERS ===== -->
     <section class="bf-section container">
-        <div class="bf-section__header">
-            <h2 class="bf-h2 bf-h2--green">Best Sellers</h2>
-        </div>
+      <div class="bf-section__header">
+        <h2 class="bf-h2 bf-h2--green">Best Sellers</h2>
+      </div>
 
-        <div class="bf-grid" id="bestSellersGrid">
-
-            <!-- Card 1 -->
-            <article class="bf-card" data-title="Harry Potter and the Sorcerer’s Stone" data-author="J.K. Rowling"
-                data-category="Fantasy">
-                <div class="bf-card__imgWrap">
-                    <img src="images/harry-potter.jpg" alt="Harry Potter cover">
-                </div>
-                <div class="bf-card__body">
-                    <span class="bf-badge bf-badge--green">Fantasy</span>
-                    <h3 class="bf-card__title">Harry Potter and the Sorcerer’s Stone</h3>
-                    <p class="bf-card__author">J.K. Rowling</p>
-                    <p class="bf-card__text">
-                        A young wizard discovers his true identity and begins an unforgettable journey at Hogwarts.
-                    </p>
-                </div>
-                <div class="bf-card__footer">
-                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
-                        onclick="location.href='borrow.html?id=1'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
-                        List</button>
-                </div>
-            </article>
-
-            <!-- Card 2 -->
-            <article class="bf-card" data-title="The Alchemist" data-author="Paulo Coelho" data-category="Fiction">
-                <div class="bf-card__imgWrap">
-                    <img src="images/the-alchemist.jpg" alt="The Alchemist cover">
-                </div>
-                <div class="bf-card__body">
-                    <span class="bf-badge bf-badge--orange">Fiction</span>
-                    <h3 class="bf-card__title">The Alchemist</h3>
-                    <p class="bf-card__author">Paulo Coelho</p>
-                    <p class="bf-card__text">
-                        A timeless story about following your dreams and listening to your heart.
-                    </p>
-                </div>
-                <div class="bf-card__footer">
-                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
-                        onclick="location.href='borrow.html?id=2'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
-                        List</button>
-                </div>
-            </article>
-
-            <!-- Card 3 -->
-            <article class="bf-card" data-title="Atomic Habits" data-author="James Clear"
-                data-category="Self-Improvement">
-                <div class="bf-card__imgWrap">
-                    <img src="images/atomic-habits.jpg" alt="Atomic Habits cover">
-                </div>
-                <div class="bf-card__body">
-                    <span class="bf-badge bf-badge--blue">Self-Improvement</span>
-                    <h3 class="bf-card__title">Atomic Habits</h3>
-                    <p class="bf-card__author">James Clear</p>
-                    <p class="bf-card__text">
-                        A practical guide to building good habits, breaking bad ones, and getting better every day.
-                    </p>
-                </div>
-                <div class="bf-card__footer">
-                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
-                        onclick="location.href='borrow.html?id=3'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
-                        List</button>
-                </div>
-            </article>
-
-            <!-- Card 4 -->
-            <article class="bf-card" data-title="You've Reached Sam" data-author="Dustin Thao"
-                data-category="Young Adult">
-
-                <div class="bf-card__imgWrap">
-                    <img src="images/Sambook.jpg" alt="You've Reached Sam cover">
-                </div>
-
-                <div class="bf-card__body">
-                    <span class="bf-badge bf-badge--purple">Young Adult</span>
-
-                    <h3 class="bf-card__title">You've Reached Sam</h3>
-                    <p class="bf-card__author">Dustin Thao</p>
-
-                    <p class="bf-card__text">
-                        A heartfelt YA novel about love, loss, and a second chance to say goodbye.
-                    </p>
-                </div>
-
-                <div class="bf-card__footer">
-                    <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
-                        onclick="location.href='borrow.html?id=4'">Details</button>
-                    <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to
-                        List</button>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- ===== CTA HERO ===== -->
-    <section class="cta-hero" aria-label="Ready to start reading section">
-        <div class="cta-hero__overlay"></div>
-
-        <div class="cta-hero__content">
-            <h1 class="cta-hero__title">Ready to Start Reading?</h1>
-
-            <p class="cta-hero__subtitle">
-                Join thousands of readers and unlock unlimited access to our entire collection
+      <div class="bf-grid" id="bestSellersGrid">
+        <article class="bf-card" data-title="Harry Potter and the Sorcerer’s Stone" data-author="J.K. Rowling" data-category="Fantasy">
+          <div class="bf-card__imgWrap">
+            <img src="images/harry-potter.jpg" alt="Harry Potter cover" />
+          </div>
+          <div class="bf-card__body">
+            <span class="bf-badge bf-badge--green">Fantasy</span>
+            <h3 class="bf-card__title">Harry Potter and the Sorcerer’s Stone</h3>
+            <p class="bf-card__author">J.K. Rowling</p>
+            <p class="bf-card__text">
+              A young wizard discovers his true identity and begins an unforgettable journey at Hogwarts.
             </p>
+          </div>
+          <div class="bf-card__footer">
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=1'">Details</button>
+            <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+          </div>
+        </article>
 
-            <a class="cta-hero__btn" href="home.html">Get Started Today</a>
-        </div>
+        <article class="bf-card" data-title="The Alchemist" data-author="Paulo Coelho" data-category="Fiction">
+          <div class="bf-card__imgWrap">
+            <img src="images/the-alchemist.jpg" alt="The Alchemist cover" />
+          </div>
+          <div class="bf-card__body">
+            <span class="bf-badge bf-badge--orange">Fiction</span>
+            <h3 class="bf-card__title">The Alchemist</h3>
+            <p class="bf-card__author">Paulo Coelho</p>
+            <p class="bf-card__text">
+              A timeless story about following your dreams and listening to your heart.
+            </p>
+          </div>
+          <div class="bf-card__footer">
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=2'">Details</button>
+            <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+          </div>
+        </article>
+
+        <article class="bf-card" data-title="Atomic Habits" data-author="James Clear" data-category="Self-Improvement">
+          <div class="bf-card__imgWrap">
+            <img src="images/atomic-habits.jpg" alt="Atomic Habits cover" />
+          </div>
+          <div class="bf-card__body">
+            <span class="bf-badge bf-badge--blue">Self-Improvement</span>
+            <h3 class="bf-card__title">Atomic Habits</h3>
+            <p class="bf-card__author">James Clear</p>
+            <p class="bf-card__text">
+              A practical guide to building good habits, breaking bad ones, and getting better every day.
+            </p>
+          </div>
+          <div class="bf-card__footer">
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=3'">Details</button>
+            <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+          </div>
+        </article>
+
+        <article class="bf-card" data-title="You've Reached Sam" data-author="Dustin Thao" data-category="Young Adult">
+          <div class="bf-card__imgWrap">
+            <img src="images/Sambook.jpg" alt="You've Reached Sam cover" />
+          </div>
+          <div class="bf-card__body">
+            <span class="bf-badge bf-badge--purple">Young Adult</span>
+            <h3 class="bf-card__title">You've Reached Sam</h3>
+            <p class="bf-card__author">Dustin Thao</p>
+            <p class="bf-card__text">
+              A heartfelt YA novel about love, loss, and a second chance to say goodbye.
+            </p>
+          </div>
+          <div class="bf-card__footer">
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=4'">Details</button>
+            <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- ===== FOOTER (NEW) ===== -->
-    <footer>
-        <div class="wrap" id="foot-grid">
-            <div>
-                <div id="foot-brand">
-                    <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
-                    <span id="foot-name">Bookify</span>
-                </div>
-                <p id="tag">
-                    Your gateway to endless knowledge.<br />
-                    Discover, borrow, and explore our curated collection of literary treasures.
-                </p>
-            </div>
+    <section class="cta-hero" aria-label="Ready to start reading section">
+      <div class="cta-hero__overlay"></div>
+      <div class="cta-hero__content">
+        <h1 class="cta-hero__title">Ready to Start Reading?</h1>
+        <p class="cta-hero__subtitle">
+          Join thousands of readers and unlock unlimited access to our entire collection
+        </p>
+        <a class="cta-hero__btn" href="home.html">Get Started Today</a>
+      </div>
+    </section>
+  </main>
 
-            <details class="foot-acc" open>
-                <summary class="foot-acc__sum">EXPLORE</summary>
-                <div class="foot-acc__panel">
-                    <a href="about.html">About Us</a>
-                    <a href="catalog.html">Browse Catalog</a>
-                    <a href="catalog.html">Fiction</a>
-                    <a href="catalog.html">Non-Fiction</a>
-                </div>
-            </details>
-
-            <details class="foot-acc" open>
-                <summary class="foot-acc__sum">ACCOUNT</summary>
-                <div class="foot-acc__panel">
-                    <a href="profile.html">My Profile</a>
-                    <a href="profile.html">Borrowed Books</a>
-                    <a href="profile.html">Reading History</a>
-                </div>
-            </details>
-
-            <div>
-                <h4>LIBRARY HOURS</h4>
-                <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
-                <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
-                <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
-            </div>
+  <footer>
+    <div class="wrap" id="foot-grid">
+      <div>
+        <div id="foot-brand">
+          <span id="foot-logo"><img src="images/Newlogo2.png" alt="Bookify logo" /></span>
+          <span id="foot-name">Bookify</span>
         </div>
+        <p id="tag">
+          Your gateway to endless knowledge.<br />
+          Discover, borrow, and explore our curated collection of literary treasures.
+        </p>
+      </div>
 
-        <div class="wrap" id="bottom">
-            <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
-            <div id="links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
-            </div>
+      <details class="foot-acc" open>
+        <summary class="foot-acc__sum">EXPLORE</summary>
+        <div class="foot-acc__panel">
+          <a href="about.html">About Us</a>
+          <a href="catalog.html">Browse Catalog</a>
+          <a href="catalog.html">Fiction</a>
+          <a href="catalog.html">Non-Fiction</a>
         </div>
-    </footer>
+      </details>
 
-    <script src="darkmode.js" defer></script>
-    <script src="home.js" defer></script>
-    <script src="header.js" defer></script>
+      <details class="foot-acc" open>
+        <summary class="foot-acc__sum">ACCOUNT</summary>
+        <div class="foot-acc__panel">
+          <a href="profile.html">My Profile</a>
+          <a href="profile.html">Borrowed Books</a>
+          <a href="profile.html">Reading History</a>
+        </div>
+      </details>
+
+      <div>
+        <h4>LIBRARY HOURS</h4>
+        <div class="hrs"><span>Monday - Friday</span><span>9AM - 9PM</span></div>
+        <div class="hrs"><span>Saturday</span><span>10AM - 6PM</span></div>
+        <div class="hrs"><span>Sunday</span><span>12PM - 5PM</span></div>
+      </div>
+    </div>
+
+    <div class="wrap" id="bottom">
+      <span>© <span id="year"></span> Bookify Library. All rights reserved.</span>
+      <div id="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="darkmode.js" defer></script>
+  <script src="home.js" defer></script>
+  <script src="header.js" defer></script>
 </body>
-
 </html>
