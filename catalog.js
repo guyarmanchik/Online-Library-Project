@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function normalizeCoverPath(path) {
-    if (!path) return "images/placeholder-cover.png";
+    if (!path) return "images/placeholder-cover.webp";
     if (path.startsWith("/images/")) return path.slice(1);
     return path;
   }
