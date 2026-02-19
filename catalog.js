@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function normalizeCoverPath(path) {
-    if (!path) return "images/placeholder-cover.png";
+    if (!path) return "images/placeholder-cover.webp";
     if (path.startsWith("/images/")) return path.slice(1);
     return path;
   }
@@ -138,28 +138,30 @@ document.addEventListener("DOMContentLoaded", () => {
       grid.innerHTML = EMPTY_CATEGORY_MESSAGE;
       return;
     }
-
     grid.innerHTML = list.map(createCard).join("");
-
-    grid.querySelectorAll(".book-card").forEach((card) => {
-      const goToDetails = () => {
-        const id = card.dataset.id;
-        window.location.href = `borrow.html?id=${encodeURIComponent(id)}`;
-      };
-
-      card.addEventListener("click", goToDetails);
-
-      card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          goToDetails();
-        }
-      });
-    });
   }
 
   function applyFilters() {
     renderBooks(getFilteredBooks());
+  }
+
+  if (grid) {
+    grid.addEventListener("click", (e) => {
+      const card = e.target.closest(".book-card");
+      if (!card) return;
+      const id = card.dataset.id;
+      window.location.href = `borrow.html?id=${encodeURIComponent(id)}`;
+    });
+
+    grid.addEventListener("keydown", (e) => {
+      const card = e.target.closest(".book-card");
+      if (!card) return;
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const id = card.dataset.id;
+        window.location.href = `borrow.html?id=${encodeURIComponent(id)}`;
+      }
+    });
   }
 
   if (chipsWrap) {
@@ -176,8 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (searchInput) searchInput.addEventListener("input", applyFilters);
-
-  fetch("books.json", { cache: "no-store" })
+  fetch("books.json")
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status} (${res.statusText})`);
       return res.json();
@@ -203,6 +204,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (countEl) countEl.textContent = "0";
     });
-
-  window.addEventListener("focus", applyFilters);
 });
