@@ -146,9 +146,15 @@
 }
 
 .catalog-error {
-  grid-column: 1 / -1;
+   grid-column: 1 / -1;
+  background: #ffffff;
+  border: 2px dashed #e5d6cc;
+  border-radius: 28px;
+  padding: 60px 20px;
   text-align: center;
-  padding: 24px;
+  color: #8f4824;
+  width: 100%;
+  margin: 40px auto;
 }
 
 .book-badge {
