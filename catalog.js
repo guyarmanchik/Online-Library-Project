@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return (base + bump).toFixed(1);
   }
 
-  function createCard(book) {
+  function createCard(book, index) {
     const title = book.title || "Untitled";
     const author = book.author || "Unknown";
     const cover = normalizeCoverPath(book.cover);
@@ -94,7 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
             alt="${escapeHtml(title)} cover"
             width="200"
             height="300"
-            loading="lazy"
+            ${index < 4 ? 'fetchpriority="high"' : ""}
+            ${index < 4 ? "" : 'loading="lazy"'}
             decoding="async"
             onerror="this.src='images/placeholder-cover.png'"
           >
@@ -141,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    grid.innerHTML = list.map(createCard).join("");
+    grid.innerHTML = list.map((book, i) => createCard(book, i)).join("");
 
     grid.querySelectorAll(".book-card").forEach((card) => {
       const goToDetails = () => {
@@ -179,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (searchInput) searchInput.addEventListener("input", applyFilters);
 
-  fetch("books.json", { cache: "no-store" })
+  fetch("books.json")
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status} (${res.statusText})`);
       return res.json();
