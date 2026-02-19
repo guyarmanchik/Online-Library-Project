@@ -8,7 +8,7 @@ p {
   margin: 0;
 }
 
-.container {
+.contact-container {
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
 }
