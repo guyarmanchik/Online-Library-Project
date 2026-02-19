@@ -589,3 +589,63 @@ body.dark .bf-btn--addToList {
     font-size: 16px;
   }
 }
+
+/* =========================
+   SUCCESS MODAL
+========================= */
+
+.bf-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s ease;
+  z-index: 9999;
+}
+
+.bf-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bf-modal__box {
+  background: #1f1f1f;
+  color: #fff;
+  padding: 28px 32px;
+  border-radius: 16px;
+  width: 340px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  animation: modalPop 0.25s ease;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.bf-modal__btn {
+  margin-top: 18px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 2px solid #7aa7ff;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.bf-modal__btn:hover {
+  background: #7aa7ff;
+}
