@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +24,8 @@
         <a class="bf-nav__link" href="about.html">About</a>
         <a class="bf-nav__link" href="contact.html">Contact Us</a>
 
-        <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" type="button" aria-label="Toggle dark mode">
+        <button class="bf-themeToggle bf-themeToggle--inMenu" id="themeToggleMobile" type="button"
+          aria-label="Toggle dark mode">
           🌙
         </button>
       </nav>
@@ -50,12 +52,8 @@
         </div>
 
         <form id="searchForm" class="bf-search__box" role="search">
-          <input
-            id="searchInput"
-            type="search"
-            placeholder="Search by title / author / category..."
-            aria-label="Search"
-          />
+          <input id="searchInput" type="search" placeholder="Search by title / author / category..."
+            aria-label="Search" />
           <button class="bf-search__btn" type="submit" aria-label="Search">🔎</button>
         </form>
 
@@ -98,7 +96,8 @@
       </div>
 
       <div class="bf-grid" id="bestSellersGrid">
-        <article class="bf-card" data-title="Harry Potter and the Sorcerer’s Stone" data-author="J.K. Rowling" data-category="Fantasy">
+        <article class="bf-card" data-title="Harry Potter and the Sorcerer’s Stone" data-author="J.K. Rowling"
+          data-category="Fantasy">
           <div class="bf-card__imgWrap">
             <img src="images/harry-potter.jpg" alt="Harry Potter cover" />
           </div>
@@ -111,7 +110,8 @@
             </p>
           </div>
           <div class="bf-card__footer">
-            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=1'">Details</button>
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
+              onclick="location.href='borrow.html?id=1'">Details</button>
             <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
           </div>
         </article>
@@ -129,7 +129,8 @@
             </p>
           </div>
           <div class="bf-card__footer">
-            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=2'">Details</button>
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
+              onclick="location.href='borrow.html?id=2'">Details</button>
             <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
           </div>
         </article>
@@ -147,7 +148,8 @@
             </p>
           </div>
           <div class="bf-card__footer">
-            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=3'">Details</button>
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
+              onclick="location.href='borrow.html?id=3'">Details</button>
             <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
           </div>
         </article>
@@ -165,7 +167,8 @@
             </p>
           </div>
           <div class="bf-card__footer">
-            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button" onclick="location.href='borrow.html?id=4'">Details</button>
+            <button class="bf-btn bf-btn--primary bf-btn--wide" type="button"
+              onclick="location.href='borrow.html?id=4'">Details</button>
             <button class="bf-btn bf-btn--ghost bf-btn--wide bf-btn--addToList" type="button">Add to List</button>
           </div>
         </article>
@@ -233,9 +236,22 @@
       </div>
     </div>
   </footer>
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div id="successModal" class="bf-modal">
+    <div class="bf-modal__box">
+      <h3>✅ Book added successfully</h3>
+      <p>The book was added to your reading list.</p>
+
+      <button id="modalClose" class="bf-modal__btn">
+        OK
+      </button>
+    </div>
+  </div>
+
 
   <script src="darkmode.js" defer></script>
   <script src="home.js" defer></script>
   <script src="header.js" defer></script>
 </body>
+
 </html>

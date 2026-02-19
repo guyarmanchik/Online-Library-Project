@@ -85,3 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategory();
   renderHero();
 });
+const modal = document.getElementById("successModal");
+const modalClose = document.getElementById("modalClose");
+
+function openModal() {
+  modal.classList.add("show");
+}
+
+function closeModal() {
+  modal.classList.remove("show");
+}
+
+modalClose.addEventListener("click", closeModal);
+
+document.querySelectorAll(".bf-btn--addToList").forEach(btn => {
+  btn.addEventListener("click", () => {
+    openModal();
+  });
+});
