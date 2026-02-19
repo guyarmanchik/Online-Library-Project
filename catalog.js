@@ -92,6 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <img
             src="${cover}"
             alt="${escapeHtml(title)} cover"
+            width="200"
+            height="300"
             loading="lazy"
             decoding="async"
             onerror="this.src='images/placeholder-cover.png'"
