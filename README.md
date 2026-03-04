@@ -1,4 +1,3 @@
-![Bookify Screenshot](images/homepage.png)
 # Bookify – Library Catalog Web Application
 
 Bookify is a responsive frontend web application that simulates a modern digital library platform.  
@@ -56,24 +55,6 @@ https://guyarmanchik.github.io/Online-Library-Project/
 ### Reusable Components
 - Shared Header and Footer across all pages
 - Modular CSS and JavaScript structure
-
----
-
-## 📁 Project Structure
-
-```
-images/
-books.json
-
-index.html
-catalog.html
-borrow.html
-profile.html
-contact.html
-
-css/
-js/
-```
 
 ---
 
