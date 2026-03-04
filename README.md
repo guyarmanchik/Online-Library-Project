@@ -1,92 +1,88 @@
-# frontend-capstone-team-18
-Repo for final assignment
-
-# Bookify – Frontend Capstone Project
-
-## System Description
+![Bookify Screenshot](images/homepage.png)
+# Bookify – Library Catalog Web Application
 
 Bookify is a responsive frontend web application that simulates a modern digital library platform.  
-The system allows users to browse books, view details, manage a personal profile, and track borrowing activity.
+The application allows users to browse books, explore the catalog, view book details, and manage borrowing activity through a personal profile.
 
-The project was built as a full frontend capstone assignment with emphasis on:
-- Clean architecture
-- Responsive design
-- Accessibility
-- Dark mode support
-- JSON usage
-- Git workflow & deployment
-
-The website is fully deployed using GitHub Pages.
+This project focuses on building a complete client-side web experience using modern frontend development practices.
 
 ---
 
-##  Technologies & Main Features
+## 🌐 Live Demo
 
-## Global & Local files
-- Each page is associated with its own css and js files (if applicable)
-- Each page is associated with global reuseable pieces of code e.g. Header, Footer, Dark mode, etc.
+https://guyarmanchik.github.io/Online-Library-Project/
 
-### 🔹 Responsive Design
+---
+
+## 🛠 Technologies
+
+- HTML5  
+- CSS3  
+- JavaScript (Vanilla JS)  
+- JSON Data Handling  
+- Git & GitHub  
+- GitHub Pages Deployment  
+
+---
+
+## ✨ Main Features
+
+### Responsive Design
 - Fully responsive layout
-- Breakpoints for desktop, tablet and mobile
-- Adaptive navigation with hamburger menu
+- Optimized for desktop, tablet, and mobile
+- Adaptive navigation with a hamburger menu
 
-### 🔹 Dark Mode
-- Toggle between light and dark theme
+### Dark Mode
+- Toggle between light and dark themes
 - Implemented using CSS variables
-- Persistent theme behavior
-- Global usage of darkmode.js across all pages
+- Persistent theme behavior across pages
 
-### 🔹 Header
-- Reusable header across all pages
-- Accessible navigation with `aria-current`
-- Mobile burger menu with toggle logic
+### Dynamic Book Catalog
+- Book grid rendered dynamically from `books.json`
+- Category badges and interactive buttons
+- Catalog browsing experience
 
-### 🔹 Footer
-- Reusable footer across all pages
-- Accordion behavior on mobile
-- Static layout on desktop
+### Borrow System
+- Dynamic book details page
+- Query parameter handling (`?id=`)
+- Borrow tracking functionality
 
-
-### 🔹 Homepage
-- Hero section with carousel
-- Search input UI
-- Best sellers grid
-
-
-### 🔹 Catalog Page
-- Book grid layout
-- Dynamic rendering from `books.json`
-- Category badges
-- Book interaction buttons
-
-### 🔹 Borrow Page
-- Book details view
-- parameter handling (`?id=`)
-- Dynamic content rendering
-- Adds selected books to the user's borrowing state
-- Synchronizes with the Profile page statistics and lists
-
-### 🔹 Profile Page
-- User profile card
+### User Profile
+- Personal profile card
 - Borrowed books tracking
-- History view
-- Tracks borrowed, returned and read books dynamically
-- Automatically updates counters (Currently Borrowed, Overdue, Books Returned)
+- History of borrowed and returned books
+- Dynamic counters for borrowed and returned items
 
-### 🔹 Contact Page
-- Styled contact form
-- Comprhensive input fields to create an inquiry
-- Responsive layout
-
+### Reusable Components
+- Shared Header and Footer across all pages
+- Modular CSS and JavaScript structure
 
 ---
 
-## 🌐 Live Website
+## 📁 Project Structure
 
-https://amitgalili.github.io/frontend-capstone-team-18/
+```
+images/
+books.json
 
+index.html
+catalog.html
+borrow.html
+profile.html
+contact.html
+
+css/
+js/
+```
 
 ---
 
-Developed as part of a Frontend Capstone Assignment.
+## 🚀 Deployment
+
+The project is deployed using **GitHub Pages** and can be accessed through the live demo link above.
+
+---
+
+## 👨‍💻 Project
+
+Developed as part of a frontend web development course focusing on building responsive and interactive web applications using HTML, CSS, and JavaScript.
